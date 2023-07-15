@@ -1,14 +1,16 @@
 package com.example.springdatabasicdemo.dtos;
 
+import java.time.LocalDate;
+
 public class SaleDto {
 
     private int id;
-    private String sale_date;
+    private LocalDate  sale_date;
     private String sale_price;
     private ClientDto client;
     private ToyDto toy;
 
-    public SaleDto(int id, String sale_date, String sale_price, ClientDto client, ToyDto toy){
+    public SaleDto(int id, LocalDate sale_date, String sale_price, ClientDto client, ToyDto toy){
         this.id = id;
         this.sale_date = sale_date;
         this.sale_price = sale_price;
@@ -26,11 +28,11 @@ public class SaleDto {
         this.id = id;
     }
 
-    public String getSale_date() {
+    public LocalDate  getSale_date() {
         return sale_date;
     }
 
-    public void setSale_date(String sale_data) {
+    public void setSale_date(LocalDate  sale_data) {
         this.sale_date = sale_data;
     }
 

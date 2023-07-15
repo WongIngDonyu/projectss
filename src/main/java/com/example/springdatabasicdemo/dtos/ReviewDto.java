@@ -2,12 +2,12 @@ package com.example.springdatabasicdemo.dtos;
 
 public class ReviewDto {
     private int id;
-    private String review_rating;
+    private int review_rating;
     private String review_comment;
     private ClientDto client;
     private ToyDto toy;
 
-    public ReviewDto(int id, String review_rating, String review_comment, ClientDto client, ToyDto toy){
+    public ReviewDto(int id, int review_rating, String review_comment, ClientDto client, ToyDto toy){
         this.id = id;
         this.review_rating = review_rating;
         this.review_comment = review_comment;
@@ -25,11 +25,11 @@ public class ReviewDto {
         this.id = id;
     }
 
-    public String getReview_rating() {
+    public int getReview_rating() {
         return review_rating;
     }
 
-    public void setReview_rating(String review_rating) {
+    public void setReview_rating(int review_rating) {
         this.review_rating = review_rating;
     }
 

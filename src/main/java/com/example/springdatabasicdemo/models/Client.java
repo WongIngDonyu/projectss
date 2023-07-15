@@ -16,10 +16,10 @@ public class Client extends BaseEntity {
 
     @Column(name = "client_email")
     private String clientEmail;
-    @OneToMany(mappedBy = "client", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Sale> sales;
 
     public Client() {

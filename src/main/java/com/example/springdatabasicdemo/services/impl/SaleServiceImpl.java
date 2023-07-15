@@ -44,11 +44,7 @@ public class SaleServiceImpl implements SaleService<Integer> {
         return modelMapper.map(saleRepository.save(sa), SaleDto.class);
     }
 
-    @Override
-    public List<SaleDto> findSaleByGroup(String client) {
-        return null;
-    }
-    @Override
+    /*@Override
     public List<SaleDto> findSaleByGroup(String client, String toy) {
         Client clientObject = clientRepository.findByClientName(client);
         Toy toyObject = toyRepository.findByToyName(toy);
@@ -56,5 +52,5 @@ public class SaleServiceImpl implements SaleService<Integer> {
                 .stream()
                 .map(sa -> modelMapper.map(sa, SaleDto.class))
                 .collect(Collectors.toList());
-    }
+    }*/
 }

@@ -1,10 +1,14 @@
 package com.example.springdatabasicdemo.dtos;
 
+import java.util.List;
+
 public class ClientDto {
     private int id;
     private String client_name;
     private String client_phonenumber;
     private String client_email;
+    private List<ReviewDto> reviews;
+    private List<SaleDto> sales;
 
     public ClientDto(int id, String client_name, String client_phonenumber, String client_email){
         this.id = id;
@@ -12,6 +16,7 @@ public class ClientDto {
         this.client_phonenumber = client_phonenumber;
         this.client_email = client_email;
     }
+
     public ClientDto(){}
 
     public int getId() {
@@ -44,6 +49,22 @@ public class ClientDto {
 
     public void setClient_email(String client_email) {
         this.client_email = client_email;
+    }
+
+    public List<ReviewDto> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<ReviewDto> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<SaleDto> getSales() {
+        return sales;
+    }
+
+    public void setSales(List<SaleDto> sales) {
+        this.sales = sales;
     }
 
     @Override

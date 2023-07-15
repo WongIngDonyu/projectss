@@ -10,6 +10,6 @@ import java.util.Collection;
 
 @Repository
 public interface SaleRepository extends JpaRepository<Sale, Long> {
-    Collection<Sale> findAllByClientAndToy(Client client, Toy toy);
+
 }
 

@@ -16,7 +16,7 @@ public class Sale extends BaseEntity {
     @Column(name = "sale_date")
     private LocalDate sale_date;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private Client client;
 
