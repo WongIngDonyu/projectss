@@ -35,11 +35,11 @@ public class SaleServiceImpl implements SaleService<Integer> {
         Sale sa = modelMapper.map(sale, Sale.class);
         if (sale.getClient().getId() != 0) {
             Client c = clientRepository.findById(sale.getClient().getId()).get();
-            sa.setClient((List<Client>) c);
+            sa.setClient((Client) c);
         }
         if (sale.getToy().getId() != 0) {
             Toy t = toyRepository.findById(sale.getToy().getId()).get();
-            sa.setToy((List<Toy>) t);
+            sa.setToys((List<Toy>) t);
         }
         return modelMapper.map(saleRepository.save(sa), SaleDto.class);
     }

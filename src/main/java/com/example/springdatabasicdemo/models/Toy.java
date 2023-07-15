@@ -1,9 +1,9 @@
 package com.example.springdatabasicdemo.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.intellij.lang.annotations.Pattern;
+
+import java.util.List;
 
 @Entity
 @Table(name = "toys")
@@ -24,15 +24,22 @@ public class Toy extends BaseEntity {
 
     @Column(name = "toy_quantity")
     private String toyQuantity;
+    @OneToMany(mappedBy = "toy", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    private List<Review> reviews;
+
+    @ManyToMany(mappedBy = "toys", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    private List<Sale> sales;
 
     public Toy() {}
 
-    public Toy(String toyTypename, String toyName, String toyDescription, String toyPrice, String toyQuantity) {
+    public Toy(String toyTypename, String toyName, String toyDescription, String toyPrice, String toyQuantity, List<Review> reviews, List<Sale> sales) {
         this.toyTypename = toyTypename;
         this.toyName = toyName;
         this.toyDescription = toyDescription;
         this.toyPrice = toyPrice;
         this.toyQuantity = toyQuantity;
+        this.reviews = reviews;
+        this.sales = sales;
     }
 
     public String getToyTypename() {
@@ -73,5 +80,21 @@ public class Toy extends BaseEntity {
 
     public void setToyQuantity(String toyQuantity) {
         this.toyQuantity = toyQuantity;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<Sale> getSales() {
+        return sales;
+    }
+
+    public void setSales(List<Sale> sales) {
+        this.sales = sales;
     }
 }

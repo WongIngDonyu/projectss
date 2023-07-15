@@ -35,11 +35,11 @@ public class ReviewServiceImpl implements ReviewService<Integer> {
         Review r = modelMapper.map(review, Review.class);
         if (review.getClient().getId() != 0) {
             Client c = clientRepository.findById(review.getClient().getId()).get();
-            r.setClient((List<Client>) c);
+            r.setClient((Client) c);
         }
         if (review.getToy().getId() != 0) {
             Toy t = toyRepository.findById(review.getToy().getId()).get();
-            r.setToy((List<Toy>) t);
+            r.setToy((Toy) t);
         }
         return modelMapper.map(reviewRepository.save(r), ReviewDto.class);
     }
