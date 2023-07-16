@@ -2,18 +2,19 @@ package com.example.springdatabasicdemo.dtos;
 
 public class ToyDto {
     private int id;
-    private String toy_typename;
-    private String toy_name;
-    private String toy_description;
-    private String toy_price;
-    private String toy_quantity;
+    private String toyTypename;
+    private String toyName;
+    private String toyDescription;
+    private String toyPrice;
+    private String toyQuantity;
 
-    public ToyDto(int id, String toy_typename, String toy_name, String toy_description, String toy_price, String toy_quantity){
+    public ToyDto(int id, String toyTypename, String toyName, String toyDescription, String toyPrice, String toyQuantity){
         this.id = id;
-        this.toy_typename = toy_typename;
-        this.toy_description = toy_description;
-        this.toy_price = toy_price;
-        this.toy_quantity = toy_quantity;
+        this.toyTypename = toyTypename;
+        this.toyName = toyName;
+        this.toyDescription = toyDescription;
+        this.toyPrice = toyPrice;
+        this.toyQuantity = toyQuantity;
     }
 
     public ToyDto(){}
@@ -26,48 +27,43 @@ public class ToyDto {
         this.id = id;
     }
 
-    public String getToy_typename() {
-        return toy_typename;
+    public String getToyTypename() {
+        return toyTypename;
     }
 
-    public void setToy_typename(String toy_typename) {
-        this.toy_typename = toy_typename;
+    public void setToyTypename(String toyTypename) {
+        this.toyTypename = toyTypename;
     }
 
-    public String getToy_name() {
-        return toy_name;
+    public String getToyName() {
+        return toyName;
     }
 
-    public void setToy_name(String toy_name) {
-        this.toy_name = toy_name;
+    public void setToyName(String toyName) {
+        this.toyName = toyName;
     }
 
-    public String getToy_description() {
-        return toy_description;
+    public String getToyDescription() {
+        return toyDescription;
     }
 
-    public void setToy_description(String toy_description) {
-        this.toy_description = toy_description;
+    public void setToyDescription(String toyDescription) {
+        this.toyDescription = toyDescription;
     }
 
-    public String getToy_price() {
-        return toy_price;
+    public String getToyPrice() {
+        return toyPrice;
     }
 
-    public void setToy_price(String toy_price) {
-        this.toy_price = toy_price;
+    public void setToyPrice(String toyPrice) {
+        this.toyPrice = toyPrice;
     }
 
-    public String getToy_quantity() {
-        return toy_quantity;
+    public String getToyQuantity() {
+        return toyQuantity;
     }
 
-    public void setToy_quantity(String toy_quantity) {
-        this.toy_quantity = toy_quantity;
-    }
-
-    @Override
-    public String toString() {
-        return "Clients { id=" + id + ", Client name=" + toy_typename + ", Client Phone number=" + toy_name + ", Client email=" + toy_description + ", Toy price=" + toy_price + ", Toy quantity=" + toy_quantity + "}";
+    public void setToyQuantity(String toyQuantity) {
+        this.toyQuantity = toyQuantity;
     }
 }

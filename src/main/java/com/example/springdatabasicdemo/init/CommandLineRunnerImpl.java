@@ -25,6 +25,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Autowired
     private ReviewService reviewService;
 
+    @Autowired
+    private ClientService clientService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -65,7 +67,6 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         //Добавление в БД записей
 
         ClientDto c1 = new ClientDto(0, "Egor", "+11111111111", "Egor@gmail.com");
-
 
         ToyDto t1 = new ToyDto(0, "Mishka ", "Mishka Fredy", "Страшилка", "1488", "10000");
 
