@@ -13,20 +13,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ToyServiceImpl implements ToyService<Integer> {
     @Autowired
-    private ClientRepository clientRepository;
-
-    @Autowired
     private ToyRepository toyRepository;
-
-    @Autowired
-    private ReviewRepository reviewRepository;
-
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public ToyDto add(ToyDto toyDto) {
-        return null;
+        Toy toy = modelMapper.map(toyDto, Toy.class);
+        return modelMapper.map(toyRepository.save(toy), ToyDto.class);
     }
 
 

@@ -24,10 +24,10 @@ public class Toy extends BaseEntity {
 
     @Column(name = "toy_quantity")
     private String toyQuantity;
-    @OneToMany(mappedBy = "toy", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "toy", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private List<Review> reviews;
 
-    @ManyToMany(mappedBy = "toys", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "toys", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private List<Sale> sales;
 
     public Toy() {}

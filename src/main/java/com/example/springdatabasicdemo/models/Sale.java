@@ -3,6 +3,7 @@ package com.example.springdatabasicdemo.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,17 +17,18 @@ public class Sale extends BaseEntity {
     @Column(name = "sale_date")
     private LocalDate sale_date;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REFRESH , fetch = FetchType.LAZY)
     @JoinTable(
             name = "toy_sale",
             joinColumns = @JoinColumn(name = "sale_id"),
             inverseJoinColumns = @JoinColumn(name = "toy_id")
     )
-    private List<Toy> toys;
+
+    private List<Toy> toys = new ArrayList<>();
 
     public Sale() {
     }

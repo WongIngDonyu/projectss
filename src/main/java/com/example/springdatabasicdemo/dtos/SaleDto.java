@@ -1,6 +1,7 @@
 package com.example.springdatabasicdemo.dtos;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class SaleDto {
 
@@ -8,17 +9,17 @@ public class SaleDto {
     private LocalDate  sale_date;
     private String sale_price;
     private ClientDto client;
-    private ToyDto toy;
+    private List<ToyDto> toys;
+    public SaleDto(){}
 
-    public SaleDto(int id, LocalDate sale_date, String sale_price, ClientDto client, ToyDto toy){
+    public SaleDto(int id, LocalDate sale_date, String sale_price, ClientDto client, List<ToyDto> toys) {
         this.id = id;
         this.sale_date = sale_date;
         this.sale_price = sale_price;
         this.client = client;
-        this.toy = toy;
+        this.toys = toys;
     }
 
-    public SaleDto(){}
 
     public int getId() {
         return id;
@@ -48,12 +49,11 @@ public class SaleDto {
 
     public void setClient(ClientDto client){this.client = client;}
 
-    public ToyDto getToy(){return toy;}
+    public List<ToyDto> getToys() {
+        return toys;
+    }
 
-    public void setToy(ToyDto toy){this.toy = toy;}
-
-    @Override
-    public String toString() {
-        return "Student { id=" + id + ", Sale date=" + sale_date + ", Sale price=" + sale_price + "}";
+    public void setToys(List<ToyDto> toys) {
+        this.toys = toys;
     }
 }

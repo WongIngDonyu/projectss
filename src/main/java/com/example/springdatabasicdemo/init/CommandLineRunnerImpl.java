@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -27,6 +28,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private ToyService toyService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -67,15 +70,33 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         //Добавление в БД записей
 
         ClientDto c1 = new ClientDto(0, "Egor", "+11111111111", "Egor@gmail.com");
-
+        ClientDto sc1 = clientService.register(c1);
         ToyDto t1 = new ToyDto(0, "Mishka ", "Mishka Fredy", "Страшилка", "1488", "10000");
+        ToyDto st1 = toyService.add(t1);
 
-        SaleDto sa1 = new SaleDto(0, LocalDate.of(2022,11,21), "1488", c1, t1);
+        List<ToyDto> toysList = new ArrayList<>();
+        toysList.add(st1);
 
-        ReviewDto r1 = new ReviewDto(0, 5, "Нормас пивас", c1, t1);
+        SaleDto sa1 = new SaleDto(0, LocalDate.of(2022,11,21), "1488", sc1, toysList);
+
+        ReviewDto r1 = new ReviewDto(0, 5, "Нормас пивас", sc1, st1);
 
         saleService.register(sa1);
         reviewService.register(r1);
+
+        /*
+        ClientDto c1 = new ClientDto(0, "Egor", "+11111111111", "Egor@gmail.com");
+        ClientDto sc1 = clientService.register(c1);
+        ToyDto t1 = new ToyDto(0, "Mishka ", "Mishka Fredy", "Страшилка", "1488", "10000");
+        ToyDto st1 = toyService.add(t1);
+
+        ReviewDto r1 = new ReviewDto(0, 5, "Нормас пивас", sc1, t1);
+        reviewService.register(r1);
+       // SaleDto sa1 = new SaleDto(0, LocalDate.of(2022,11,21), "1488", sc1, List.of(st1));
+
+
+        //saleService.register(sa1);
+         */
 
     }
 }

@@ -9,6 +9,7 @@ import com.example.springdatabasicdemo.repositories.ClientRepository;
 import com.example.springdatabasicdemo.repositories.ReviewRepository;
 import com.example.springdatabasicdemo.repositories.ToyRepository;
 import com.example.springdatabasicdemo.services.ReviewService;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class ReviewServiceImpl implements ReviewService<Integer> {
 
     @Autowired
     private ModelMapper modelMapper;
-
+    @Transactional
     @Override
     public ReviewDto register(ReviewDto review) {
         Review r = modelMapper.map(review, Review.class);
