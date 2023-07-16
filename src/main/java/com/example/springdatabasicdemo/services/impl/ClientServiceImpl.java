@@ -40,8 +40,9 @@ public class ClientServiceImpl implements ClientService<Integer> {
     }
 
     @Override
-    public ClientDto register(ClientDto clientDto) {
-        Client client = modelMapper.map(clientDto, Client.class);
-        return modelMapper.map(clientRepository.save(client), ClientDto.class);
+    public ClientDto add(ClientDto client) {
+        Client c = modelMapper.map(client, Client.class);
+
+        return modelMapper.map(clientRepository.save(c), ClientDto.class);
     }
 }

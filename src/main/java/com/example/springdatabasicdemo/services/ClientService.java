@@ -15,6 +15,6 @@ public interface ClientService <I extends Number> {
 
     Optional<ClientDto> findClient(Integer id);
 
-    ClientDto register(ClientDto client);
+    ClientDto add(ClientDto client);
 
 }

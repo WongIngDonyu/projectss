@@ -7,8 +7,6 @@ public class ClientDto {
     private String clientName;
     private String clientPhoneNumber;
     private String clientEmail;
-    private List<ReviewDto> reviews;
-    private List<SaleDto> sales;
     public ClientDto() {
     }
     public ClientDto(int id, String clientName, String clientPhoneNumber, String clientEmail){
@@ -50,20 +48,5 @@ public class ClientDto {
         this.clientEmail = clientEmail;
     }
 
-    public List<ReviewDto> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<ReviewDto> reviews) {
-        this.reviews = reviews;
-    }
-
-    public List<SaleDto> getSales() {
-        return sales;
-    }
-
-    public void setSales(List<SaleDto> sales) {
-        this.sales = sales;
-    }
 }
 

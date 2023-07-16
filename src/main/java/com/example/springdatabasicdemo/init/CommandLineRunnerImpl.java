@@ -70,9 +70,11 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         //Добавление в БД записей
 
         ClientDto c1 = new ClientDto(0, "Egor", "+11111111111", "Egor@gmail.com");
-        ClientDto sc1 = clientService.register(c1);
+        ClientDto sc1 = clientService.add(c1);
         ToyDto t1 = new ToyDto(0, "Mishka ", "Mishka Fredy", "Страшилка", "1488", "10000");
         ToyDto st1 = toyService.add(t1);
+        ToyDto t2 = new ToyDto(0, "alalallalal ", "Mishka Fredy", "Страшилка", "1488", "10000");
+        ToyDto st2 = toyService.add(t2);
 
         List<ToyDto> toysList = new ArrayList<>();
         toysList.add(st1);

@@ -13,7 +13,7 @@ public class ToyController {
     private ToyService toyService;
 
     @GetMapping("/toys")
-    Iterable<StudentDto> all() {
+    Iterable<ToyDto> all() {
         return toyService.getAll();
     }
 

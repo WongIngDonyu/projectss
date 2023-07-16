@@ -24,7 +24,7 @@ public class ClientController {
 
     @PostMapping("/clients")
         ClientDto newClient(@RequestBody ClientDto newClient){
-            return clientService.register(newClient);
+            return clientService.add(newClient);
         }
 
     @DeleteMapping("/clients/{id}")
