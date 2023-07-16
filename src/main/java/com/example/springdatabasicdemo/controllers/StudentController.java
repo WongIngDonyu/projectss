@@ -1,7 +1,9 @@
 package com.example.springdatabasicdemo.controllers;
 
+import com.example.springdatabasicdemo.dtos.SaleDto;
 import com.example.springdatabasicdemo.dtos.StudentDto;
 import com.example.springdatabasicdemo.models.Student;
+import com.example.springdatabasicdemo.services.SaleService;
 import com.example.springdatabasicdemo.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +20,8 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    StudentDto newStudent(@RequestBody StudentDto newStudent) {  return studentService.register(newStudent); }
+    StudentDto newStudent(@RequestBody StudentDto newStudent)
+    {  return studentService.register(newStudent); }
 
     @GetMapping("/students/{id}")
     StudentDto one(@PathVariable Integer id) throws Throwable {

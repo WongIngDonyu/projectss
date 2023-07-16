@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,13 +43,40 @@ public class SaleServiceImpl implements SaleService<Integer> {
         }
         List<Toy> toys = new ArrayList<>();
         for (ToyDto toyDto : sale.getToys()){
-                Toy toy = modelMapper.map(toyDto, Toy.class);
-                toys.add(toy);
+            Toy toy = modelMapper.map(toyDto, Toy.class);
+            toys.add(toy);
         }
         sa.setToys(toys);
         return modelMapper.map(saleRepository.save(sa), SaleDto.class);
     }
+    @Override
+    public void expel(Integer id) {
+        saleRepository.deleteById(Long.valueOf(id));
+    }
 
+    @Override
+    public void expel(SaleDto sale) {
+        saleRepository.deleteById((long) sale.getId());
+    }
+
+
+    @Override
+    public List<SaleDto> getAll() {
+        return saleRepository.findAll().stream().map((sa) -> modelMapper.map(sa, SaleDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SaleDto> findSales(String client, String toy) {
+        return saleRepository.findByClientClientNameAndToysToyName(client, toy)
+                .stream()
+                .map(sa -> modelMapper.map(sa, SaleDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<SaleDto> findSale(Integer id) {
+        return Optional.empty();
+    }
     /*@Override
     public List<SaleDto> findSaleByGroup(String client, String toy) {
         Client clientObject = clientRepository.findByClientName(client);
