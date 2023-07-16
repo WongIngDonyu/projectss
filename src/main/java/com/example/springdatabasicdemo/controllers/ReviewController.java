@@ -30,4 +30,9 @@ public class ReviewController {
     void deleteStudent(@PathVariable Integer id) {
         reviewService.expel(id);
     }
+    @GetMapping("/reviews/{reviewId}/toyName")
+    public String getToyNameByReviewId(@PathVariable Long reviewId) {
+        return reviewService.findToyNameByReviewId(reviewId);
+
+    }
 }

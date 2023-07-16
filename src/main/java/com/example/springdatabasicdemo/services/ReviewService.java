@@ -16,8 +16,5 @@ public interface ReviewService<I extends Number> {
     List<ReviewDto> getAll();
 
     Optional<SaleDto> findReview(Integer id);
-
-    List<SaleDto> findReviewByGroup(String client);
-
-    List<ReviewDto> findReviewByGroup(String client, String toy);
+    String findToyNameByReviewId(Long reviewId);
 }

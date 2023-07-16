@@ -67,16 +67,7 @@ public class ReviewServiceImpl implements ReviewService<Integer> {
     }
 
     @Override
-    public List<SaleDto> findReviewByGroup(String client) {
-        return null;
-    }
-    @Override
-    public List<ReviewDto> findReviewByGroup(String client, String toy) {
-        Client clientObject = clientRepository.findByClientName(client);
-        Toy toyObject = toyRepository.findByToyName(toy);
-        return reviewRepository.findAllByClientAndToy(clientObject, toyObject)
-                .stream()
-                .map(r -> modelMapper.map(r, ReviewDto.class))
-                .collect(Collectors.toList());
+    public String findToyNameByReviewId(Long reviewId) {
+        return reviewRepository.findToyNameByReviewId(reviewId);
     }
 }

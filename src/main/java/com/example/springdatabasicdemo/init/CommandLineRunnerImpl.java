@@ -71,34 +71,33 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         ClientDto c1 = new ClientDto(0, "Egor", "+11111111111", "Egor@gmail.com");
         ClientDto sc1 = clientService.add(c1);
+
+        ClientDto c2 = new ClientDto(0, "Alah", "+11111111111", "Alah@gmail.com");
+        ClientDto sc2 = clientService.add(c2);
+
         ToyDto t1 = new ToyDto(0, "Mishka ", "Mishka Fredy", "Страшилка", "1488", "10000");
         ToyDto st1 = toyService.add(t1);
+
         ToyDto t2 = new ToyDto(0, "alalallalal ", "Mishka Fredy", "Страшилка", "1488", "10000");
         ToyDto st2 = toyService.add(t2);
 
+        ToyDto t3 = new ToyDto(0, "Mamut Rahal", "Mamut Rahal ", "Страшилка", "1488", "10000");
+        ToyDto st3 = toyService.add(t3);
+
         List<ToyDto> toysList = new ArrayList<>();
         toysList.add(st1);
+        toysList.add(st3);
 
         SaleDto sa1 = new SaleDto(0, LocalDate.of(2022,11,21), "1488", sc1, toysList);
+
+        SaleDto sa2 = new SaleDto(0, LocalDate.of(2022,11,21), "1488", sc2, toysList);
 
         ReviewDto r1 = new ReviewDto(0, 5, "Нормас пивас", sc1, st1);
 
         saleService.register(sa1);
+        saleService.register(sa2);
         reviewService.register(r1);
 
-        /*
-        ClientDto c1 = new ClientDto(0, "Egor", "+11111111111", "Egor@gmail.com");
-        ClientDto sc1 = clientService.register(c1);
-        ToyDto t1 = new ToyDto(0, "Mishka ", "Mishka Fredy", "Страшилка", "1488", "10000");
-        ToyDto st1 = toyService.add(t1);
-
-        ReviewDto r1 = new ReviewDto(0, 5, "Нормас пивас", sc1, t1);
-        reviewService.register(r1);
-       // SaleDto sa1 = new SaleDto(0, LocalDate.of(2022,11,21), "1488", sc1, List.of(st1));
-
-
-        //saleService.register(sa1);
-         */
 
     }
 }

@@ -27,8 +27,7 @@ public class Sale extends BaseEntity {
             joinColumns = @JoinColumn(name = "sale_id"),
             inverseJoinColumns = @JoinColumn(name = "toy_id")
     )
-
-    private List<Toy> toys = new ArrayList<>();
+    private List<Toy> toys;
 
     public Sale() {
     }

@@ -15,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,9 +25,6 @@ import java.util.stream.Collectors;
 public class SaleServiceImpl implements SaleService<Integer> {
     @Autowired
     private ClientRepository clientRepository;
-
-    @Autowired
-    private ToyRepository toyRepository;
 
     @Autowired
     private SaleRepository saleRepository;
@@ -65,48 +63,19 @@ public class SaleServiceImpl implements SaleService<Integer> {
         return saleRepository.findAll().stream().map((sa) -> modelMapper.map(sa, SaleDto.class)).collect(Collectors.toList());
     }
 
-    @Override
-    public List<SaleDto> findSales(String client, String toy) {
-        return saleRepository.findByClientClientNameAndToysToyName(client, toy)
-                .stream()
-                .map(sa -> modelMapper.map(sa, SaleDto.class))
-                .collect(Collectors.toList());
-    }
 
     @Override
     public Optional<SaleDto> findSale(Integer id) {
         return Optional.empty();
     }
-    /*@Override
-    public List<SaleDto> findSaleByGroup(String client, String toy) {
-        Client clientObject = clientRepository.findByClientName(client);
-        Toy toyObject = toyRepository.findByToyName(toy);
-        return saleRepository.findAllByClientAndToy(clientObject, toyObject)
-                .stream()
-                .map(sa -> modelMapper.map(sa, SaleDto.class))
-                .collect(Collectors.toList());
+
+    @Override
+    public List<String> findClientsBySaleDate(LocalDate date){
+        return saleRepository.findClientNamesBySaleDate(date);
     }
     @Override
-    public SaleDto register(SaleDto sale) {
-        Sale sa = modelMapper.map(sale, Sale.class);
-        if (sale.getClient().getId() != 0) {
-            Client c = clientRepository.findById(sale.getClient().getId()).get();
-            sa.setClient((Client) c);
-        }
-        List<Toy> toys = new ArrayList<>();
-        for (ToyDto toyDto : sale.getToys()){
-            if (toyDto.getId() != 0) {
-                Toy t = toyRepository.findById(toyDto.getId()).orElse(null);
-                if (t != null) {
-                    toys.add(t);
-                } else {
-                    // Обработайте ситуацию, если игрушки с таким ID нет в базе данных
-                    // Можете бросить исключение или выполнить другие действия
-                }
-            }
-        }
-        sa.setToys(toys);
-        return modelMapper.map(saleRepository.save(sa), SaleDto.class);
+    public List<String> findToyNamesBySaleId (Long saleId){
+        return saleRepository.findToyNamesBySaleId(saleId);
     }
-    */
+
 }
