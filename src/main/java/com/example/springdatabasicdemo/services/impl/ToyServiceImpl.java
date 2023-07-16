@@ -1,10 +1,7 @@
 package com.example.springdatabasicdemo.services.impl;
 
-import com.example.springdatabasicdemo.dtos.StudentDto;
 import com.example.springdatabasicdemo.dtos.ToyDto;
 import com.example.springdatabasicdemo.models.Toy;
-import com.example.springdatabasicdemo.repositories.ClientRepository;
-import com.example.springdatabasicdemo.repositories.ReviewRepository;
 import com.example.springdatabasicdemo.repositories.ToyRepository;
 import com.example.springdatabasicdemo.services.ToyService;
 import org.modelmapper.ModelMapper;

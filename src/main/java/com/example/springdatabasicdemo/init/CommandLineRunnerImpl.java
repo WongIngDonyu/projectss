@@ -18,9 +18,6 @@ import java.util.List;
 public class CommandLineRunnerImpl implements CommandLineRunner {
 
     @Autowired
-    private StudentService studentService;
-
-    @Autowired
     private SaleService saleService;
 
     @Autowired
@@ -35,36 +32,6 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     public void run(String... args) throws Exception {
         seedData();
     }
-    /*
-    private void printAllToyandClientsOnSaleandReview(String groupName, String clientName, String toyName) {
-        studentService
-                .findStudentsByGroup(groupName)
-                .forEach(System.out::println);
-
-        List<Sale> sales = saleService.findSaleByGroup(clientName, toyName);
-        for (Sale sale : sales) {
-            System.out.println("Sale ID: " + sale.getId());
-            System.out.println("Sale Price: " + sale.getSale_price());
-            System.out.println("Sale Date: " + sale.getSale_date());
-            System.out.println("Clients:");
-            for (Client client : sale.getClient()) {
-                System.out.println("- Client ID: " + client.getId());
-                System.out.println("  Client Name: " + client.getClientName());
-                System.out.println("  Client Phone Number: " + client.getClientPhoneNumber());
-                System.out.println("  Client Email: " + client.getClientEmail());
-            }
-            System.out.println("Toys:");
-            for (Toy toy : sale.getToy()) {
-                System.out.println("- Toy ID: " + toy.getId());
-                System.out.println("  Toy Typename: " + toy.getToyTypename());
-                System.out.println("  Toy Name: " + toy.getToyName());
-                System.out.println("  Toy Description: " + toy.getToyDescription());
-                System.out.println("  Toy Price: " + toy.getToyPrice());
-                System.out.println("  Toy Quantity: " + toy.getToyQuantity());
-            }
-            System.out.println();
-        }
-    }*/
 
     private void seedData() throws IOException {
         //Добавление в БД записей

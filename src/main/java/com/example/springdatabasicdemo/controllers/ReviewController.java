@@ -1,7 +1,6 @@
 package com.example.springdatabasicdemo.controllers;
 
 import com.example.springdatabasicdemo.dtos.ReviewDto;
-import com.example.springdatabasicdemo.dtos.StudentDto;
 import com.example.springdatabasicdemo.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +28,14 @@ public class ReviewController {
     @DeleteMapping("/review/{id}")
     void deleteStudent(@PathVariable Integer id) {
         reviewService.expel(id);
+
     }
     @GetMapping("/reviews/{reviewId}/toyName")
     public String getToyNameByReviewId(@PathVariable Long reviewId) {
-        return reviewService.findToyNameByReviewId(reviewId);
-
+        String toyName = reviewService.findToyNameByReviewId(reviewId);
+        if (toyName == null) {
+            throw new ReviewNotFoundException(Math.toIntExact(reviewId));
+        }
+        return toyName;
     }
 }

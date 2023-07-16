@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 @ControllerAdvice
 public class SaleNotFoundAdvice {
     @ResponseBody
-    @ExceptionHandler(SaleNotFoundExeption.class)
+    @ExceptionHandler(SaleNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String saleNotFoundHandler(SaleNotFoundExeption ex) {
+    String saleNotFoundHandler(SaleNotFoundException ex) {
         return ex.getMessage();
     }
 }

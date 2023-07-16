@@ -1,10 +1,7 @@
 package com.example.springdatabasicdemo.controllers;
 
 import com.example.springdatabasicdemo.dtos.SaleDto;
-import com.example.springdatabasicdemo.dtos.StudentDto;
-import com.example.springdatabasicdemo.models.Client;
 import com.example.springdatabasicdemo.services.SaleService;
-import com.example.springdatabasicdemo.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +22,7 @@ public class SaleController {
     SaleDto one(@PathVariable Integer id) throws Throwable {
 
         return (SaleDto) saleService.findSale(id)
-                .orElseThrow(() -> new SaleNotFoundExeption(id));
+                .orElseThrow(() -> new SaleNotFoundException(id));
     }
 
     @PostMapping("/sales")
@@ -37,12 +34,21 @@ public class SaleController {
     void deleteSale(@PathVariable Integer id) {
         saleService.expel(id);
     }
+
     @GetMapping("/sales/clientsBySaleDate/{date}")
-    public List<String> clientsByDateSale(@PathVariable LocalDate date){
-        return saleService.findClientsBySaleDate(date);
+    public List<String> clientsByDateSale(@PathVariable LocalDate date) {
+        List<String> clients = saleService.findClientsBySaleDate(date);
+        if (clients.isEmpty()) {
+            throw new SaleNotFoundException(date);
+        }
+        return clients;
     }
     @GetMapping("/sales/toysBySale/{saleId}")
-    public List<String> toysBySale(@PathVariable Long saleId){
-        return saleService.findToyNamesBySaleId(saleId);
+    public List<String> toysBySale(@PathVariable Long saleId) {
+        List<String> toyNames = saleService.findToyNamesBySaleId(saleId);
+        if (toyNames.isEmpty()) {
+            throw new SaleNotFoundException(Math.toIntExact(saleId));
+        }
+        return toyNames;
     }
 }

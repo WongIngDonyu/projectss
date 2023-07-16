@@ -1,7 +1,5 @@
 package com.example.springdatabasicdemo.controllers;
 
-import com.example.springdatabasicdemo.dtos.ClientDto;
-import com.example.springdatabasicdemo.dtos.StudentDto;
 import com.example.springdatabasicdemo.dtos.ToyDto;
 import com.example.springdatabasicdemo.services.ToyService;
 import org.springframework.beans.factory.annotation.Autowired;
