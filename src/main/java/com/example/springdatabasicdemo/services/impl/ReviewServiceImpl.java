@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,6 +43,26 @@ public class ReviewServiceImpl implements ReviewService<Integer> {
             r.setToy((Toy) t);
         }
         return modelMapper.map(reviewRepository.save(r), ReviewDto.class);
+    }
+
+    @Override
+    public void expel(Integer id) {
+        reviewRepository.deleteById(Long.valueOf(id));
+    }
+
+    @Override
+    public void expel(ReviewDto review) {
+        reviewRepository.deleteById((long) review.getId());
+    }
+
+    @Override
+    public List<ReviewDto> getAll() {
+        return reviewRepository.findAll().stream().map((r) -> modelMapper.map(r, ReviewDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<SaleDto> findReview(Integer id) {
+        return Optional.empty();
     }
 
     @Override

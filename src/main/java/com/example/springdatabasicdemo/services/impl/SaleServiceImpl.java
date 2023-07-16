@@ -5,7 +5,6 @@ import com.example.springdatabasicdemo.models.Client;
 import com.example.springdatabasicdemo.models.Sale;
 import com.example.springdatabasicdemo.models.Toy;
 import com.example.springdatabasicdemo.repositories.ClientRepository;
-import com.example.springdatabasicdemo.repositories.ReviewRepository;
 import com.example.springdatabasicdemo.repositories.SaleRepository;
 import com.example.springdatabasicdemo.repositories.ToyRepository;
 import com.example.springdatabasicdemo.services.SaleService;
@@ -14,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,13 +44,32 @@ public class SaleServiceImpl implements SaleService<Integer> {
         return modelMapper.map(saleRepository.save(sa), SaleDto.class);
     }
 
-    /*@Override
-    public List<SaleDto> findSaleByGroup(String client, String toy) {
-        Client clientObject = clientRepository.findByClientName(client);
-        Toy toyObject = toyRepository.findByToyName(toy);
-        return saleRepository.findAllByClientAndToy(clientObject, toyObject)
+    @Override
+    public void expel(Integer id) {
+        saleRepository.deleteById(Long.valueOf(id));
+    }
+
+    @Override
+    public void expel(SaleDto sale) {
+        saleRepository.deleteById((long) sale.getId());
+    }
+
+
+    @Override
+    public List<SaleDto> getAll() {
+        return saleRepository.findAll().stream().map((sa) -> modelMapper.map(sa, SaleDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SaleDto> findSales(String client, String toy) {
+        return saleRepository.findByClientClientNameAndToysToyName(client, toy)
                 .stream()
                 .map(sa -> modelMapper.map(sa, SaleDto.class))
                 .collect(Collectors.toList());
-    }*/
+    }
+
+    @Override
+    public Optional<SaleDto> findSale(Integer id) {
+        return Optional.empty();
+    }
 }
