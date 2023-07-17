@@ -22,16 +22,16 @@ public class Sale extends BaseEntity {
     private Client client;
 
     @OneToMany(mappedBy = "sale", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<ToySale> toys;
+    private List<ToySale> toySales;
 
     public Sale() {
     }
 
-    public Sale(String sale_price, LocalDate sale_date, Client client, List<ToySale> toys) {
+    public Sale(String sale_price, LocalDate sale_date, Client client, List<ToySale> toySales) {
         this.sale_price = sale_price;
         this.sale_date = sale_date;
         this.client = client;
-        this.toys = toys;
+        this.toySales = toySales;
     }
 
     public String getSale_price() {
@@ -58,12 +58,12 @@ public class Sale extends BaseEntity {
         this.client = client;
     }
 
-    public List<ToySale> getToys() {
-        return toys;
+    public List<ToySale> getToySales() {
+        return toySales;
     }
 
-    public void setToys(List<ToySale> toys) {
-        this.toys = toys;
+    public void setToySales(List<ToySale> toySales) {
+        this.toySales = toySales;
     }
 }
 

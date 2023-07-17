@@ -31,7 +31,7 @@ public class ReviewServiceImpl implements ReviewService<Integer> {
 
     @Autowired
     private ModelMapper modelMapper;
-    @Transactional
+
     @Override
     public ReviewDto register(ReviewDto review) {
         Review r = modelMapper.map(review, Review.class);
