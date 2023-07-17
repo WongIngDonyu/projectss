@@ -9,9 +9,9 @@ import java.util.Optional;
 public interface ReviewService<I extends Number> {
     ReviewDto register(ReviewDto review);
 
-    void expel(ReviewDto review);
+    void delete(ReviewDto review);
 
-    void expel(Integer id);
+    void delete(Integer id);
 
     List<ReviewDto> getAll();
 

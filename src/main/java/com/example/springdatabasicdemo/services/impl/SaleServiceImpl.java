@@ -8,7 +8,6 @@ import com.example.springdatabasicdemo.models.Toy;
 import com.example.springdatabasicdemo.models.ToySale;
 import com.example.springdatabasicdemo.repositories.*;
 import com.example.springdatabasicdemo.services.SaleService;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,12 +51,12 @@ public class SaleServiceImpl implements SaleService<Integer> {
         return modelMapper.map(sa, SaleDto.class);
     }
     @Override
-    public void expel(Integer id) {
+    public void delete(Integer id) {
         saleRepository.deleteById(Long.valueOf(id));
     }
 
     @Override
-    public void expel(SaleDto sale) {
+    public void delete(SaleDto sale) {
         saleRepository.deleteById((long) sale.getId());
     }
 
@@ -77,9 +76,9 @@ public class SaleServiceImpl implements SaleService<Integer> {
     public List<String> findClientsBySaleDate(LocalDate date){
         return saleRepository.findClientNamesBySaleDate(date);
     }
-    /*@Override
-    public List<String> findToyNamesBySaleId (Long saleId){
-        return saleRepository.findToyNamesBySaleId(saleId);
-    }*/
+    @Override
+    public List<Long> findSaleIdsByAmountAndToyId(String sale_price, Long toyId) {
+        return saleRepository.findSaleIdsByAmountAndToyId(sale_price, toyId);
+    }
 
 }

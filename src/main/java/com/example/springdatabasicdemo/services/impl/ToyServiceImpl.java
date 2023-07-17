@@ -26,19 +26,13 @@ public class ToyServiceImpl implements ToyService<Integer> {
     }
 
     @Override
-    public void expel(Integer id){
+    public void delete(Integer id){
         toyRepository.deleteById(id);
     }
 
     @Override
-    public void expel(ToyDto toy){
+    public void delete(ToyDto toy){
         toyRepository.deleteById(toy.getId());
-    }
-
-    @Override
-    public ToyDto register(ToyDto toyDto){
-        Toy toy = modelMapper.map(toyDto, Toy.class);
-        return modelMapper.map(toyRepository.save(toy), ToyDto.class);
     }
 
     @Override

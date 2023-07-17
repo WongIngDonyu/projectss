@@ -1,10 +1,7 @@
 package com.example.springdatabasicdemo.init;
 
 import com.example.springdatabasicdemo.dtos.*;
-import com.example.springdatabasicdemo.models.*;
-import com.example.springdatabasicdemo.repositories.ClientRepository;
 import com.example.springdatabasicdemo.services.*;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -42,10 +39,10 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         ClientDto c2 = new ClientDto(0, "Alah", "+11111111111", "Alah@gmail.com");
         ClientDto sc2 = clientService.add(c2);
 
-        ToyDto t1 = new ToyDto(0, "Mishka ", "Mishka Fredy", "Страшилка", "1488", "10000");
+        ToyDto t1 = new ToyDto(0, "Mishka ", "Mishka Fredy", "Страшилка", "228", "10000");
         ToyDto st1 = toyService.add(t1);
 
-        ToyDto t2 = new ToyDto(0, "alalallalal ", "Mishka Fredy", "Страшилка", "1488", "10000");
+        ToyDto t2 = new ToyDto(0, "alalallalal ", "Chika", "Страшилка", "1233", "10000");
         ToyDto st2 = toyService.add(t2);
 
         ToyDto t3 = new ToyDto(0, "Mamut Rahal", "Mamut Rahal ", "Страшилка", "1488", "10000");
@@ -55,9 +52,9 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         toysList.add(st1);
         toysList.add(st3);
 
-        SaleDto sa1 = new SaleDto(0, LocalDate.of(2022,11,21), "1488", sc1, toysList);
+        SaleDto sa1 = new SaleDto(0, LocalDate.of(2022,11,21), "1991", sc1, toysList);
 
-        SaleDto sa2 = new SaleDto(0, LocalDate.of(2022,11,21), "1488", sc2, toysList);
+        SaleDto sa2 = new SaleDto(0, LocalDate.of(2022,11,21), "2003", sc2, toysList);
 
         ReviewDto r1 = new ReviewDto(0, 5, "Нормас пивас", sc1, st1);
 

@@ -1,7 +1,6 @@
 package com.example.springdatabasicdemo.models;
 
 import jakarta.persistence.*;
-import org.intellij.lang.annotations.Pattern;
 
 import java.util.List;
 

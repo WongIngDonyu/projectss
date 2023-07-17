@@ -20,12 +20,12 @@ public class ClientServiceImpl implements ClientService<Integer> {
     private ClientRepository clientRepository;
 
     @Override
-    public void expel(ClientDto client){
+    public void delete(ClientDto client){
         clientRepository.deleteById(client.getId());
     }
 
     @Override
-    public void expel(Integer id){
+    public void delete(Integer id){
         clientRepository.deleteById(id);
     }
 

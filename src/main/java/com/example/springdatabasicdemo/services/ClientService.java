@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ClientService <I extends Number> {
-    void expel(ClientDto client);
+    void delete(ClientDto client);
 
-    void expel(Integer id);
+    void delete(Integer id);
 
     List<ClientDto> getAll();
 

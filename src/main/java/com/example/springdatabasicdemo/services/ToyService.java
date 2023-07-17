@@ -8,11 +8,9 @@ import java.util.Optional;
 public interface ToyService <I extends Number>{
     ToyDto add(ToyDto toyDto);
 
-    void expel(Integer id);
+    void delete(Integer id);
 
-    void expel(ToyDto toy);
-
-    ToyDto register(ToyDto toyDto);
+    void delete(ToyDto toy);
 
     Optional<ToyDto> findToy(Integer id);
 

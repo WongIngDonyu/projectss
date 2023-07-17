@@ -27,7 +27,7 @@ public class ReviewController {
 
     @DeleteMapping("/review/{id}")
     void deleteStudent(@PathVariable Integer id) {
-        reviewService.expel(id);
+        reviewService.delete(id);
 
     }
     @GetMapping("/reviews/{reviewId}/toyName")

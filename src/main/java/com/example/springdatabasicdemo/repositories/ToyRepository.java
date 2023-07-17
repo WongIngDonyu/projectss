@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ToyRepository extends JpaRepository<Toy, Integer> {
-    Toy findByToyName(String toyName);
+
 }

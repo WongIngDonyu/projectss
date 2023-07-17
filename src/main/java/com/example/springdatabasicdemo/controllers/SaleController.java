@@ -1,6 +1,7 @@
 package com.example.springdatabasicdemo.controllers;
 
 import com.example.springdatabasicdemo.dtos.SaleDto;
+import com.example.springdatabasicdemo.models.Sale;
 import com.example.springdatabasicdemo.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class SaleController {
 
     @DeleteMapping("/sales/{id}")
     void deleteSale(@PathVariable Integer id) {
-        saleService.expel(id);
+        saleService.delete(id);
     }
 
     @GetMapping("/sales/clientsBySaleDate/{date}")
@@ -51,4 +52,9 @@ public class SaleController {
         }
         return toyNames;
     }*/
+   @GetMapping("/sales/{sale_price}/{toyId}")
+   public List<Long> findSalesByAmountAndToyId(@PathVariable Long toyId, @PathVariable String sale_price) {
+       List<Long> sales = saleService.findSaleIdsByAmountAndToyId(sale_price, toyId);
+       return sales;
+   }
 }

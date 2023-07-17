@@ -9,7 +9,6 @@ import com.example.springdatabasicdemo.repositories.ClientRepository;
 import com.example.springdatabasicdemo.repositories.ReviewRepository;
 import com.example.springdatabasicdemo.repositories.ToyRepository;
 import com.example.springdatabasicdemo.services.ReviewService;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,12 +46,12 @@ public class ReviewServiceImpl implements ReviewService<Integer> {
     }
 
     @Override
-    public void expel(Integer id) {
+    public void delete(Integer id) {
         reviewRepository.deleteById(Long.valueOf(id));
     }
 
     @Override
-    public void expel(ReviewDto review) {
+    public void delete(ReviewDto review) {
         reviewRepository.deleteById((long) review.getId());
     }
 

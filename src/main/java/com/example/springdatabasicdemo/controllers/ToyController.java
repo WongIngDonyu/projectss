@@ -23,9 +23,9 @@ public class ToyController {
 
     @PostMapping("/toys")
         ToyDto newClient(@RequestBody ToyDto newToy){
-            return toyService.register(newToy);
+            return toyService.add(newToy);
         }
 
     @DeleteMapping("/toys/{id}")
-    void deleteToy(@PathVariable Integer id) {toyService.expel(id);}
+    void deleteToy(@PathVariable Integer id) {toyService.delete(id);}
 }
