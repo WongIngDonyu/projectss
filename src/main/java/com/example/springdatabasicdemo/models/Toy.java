@@ -26,20 +26,20 @@ public class Toy extends BaseEntity {
     private String toyQuantity;
     @OneToMany(mappedBy = "toy", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private List<Review> reviews;
+    @OneToMany(mappedBy = "toy", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    private List<ToySale> toySales;
 
-    @ManyToMany(mappedBy = "toys", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<Sale> sales;
 
     public Toy() {}
 
-    public Toy(String toyTypename, String toyName, String toyDescription, String toyPrice, String toyQuantity, List<Review> reviews, List<Sale> sales) {
+    public Toy(String toyTypename, String toyName, String toyDescription, String toyPrice, String toyQuantity, List<Review> reviews, List<ToySale> toySales) {
         this.toyTypename = toyTypename;
         this.toyName = toyName;
         this.toyDescription = toyDescription;
         this.toyPrice = toyPrice;
         this.toyQuantity = toyQuantity;
         this.reviews = reviews;
-        this.sales = sales;
+        this.toySales = toySales;
     }
 
     public String getToyTypename() {
@@ -90,11 +90,11 @@ public class Toy extends BaseEntity {
         this.reviews = reviews;
     }
 
-    public List<Sale> getSales() {
-        return sales;
+    public List<ToySale> getToySales() {
+        return toySales;
     }
 
-    public void setSales(List<Sale> sales) {
-        this.sales = sales;
+    public void setToySales(List<ToySale> toySales) {
+        this.toySales = toySales;
     }
 }

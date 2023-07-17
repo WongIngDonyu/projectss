@@ -14,8 +14,8 @@ import java.util.List;
 public interface SaleRepository extends JpaRepository<Sale, Long> {
     @Query("select distinct s.client.clientName from Sale s where s.sale_date = :date")
     List<String> findClientNamesBySaleDate(LocalDate date);
-    @Query("select distinct t.toyName from Sale s join s.toys t where s.id = :saleId")
-    List<String> findToyNamesBySaleId(Long saleId);
+    /*@Query("select distinct t.toyName from Sale s join s.toys t where s.id = :saleId")
+    List<String> findToyNamesBySaleId(Long saleId);*/
 }
 
 

@@ -20,5 +20,5 @@ public interface SaleService<I extends Number> {
 
     Optional<SaleDto> findSale(Integer id);
     List<String> findClientsBySaleDate(LocalDate date);
-    List<String> findToyNamesBySaleId(Long saleId);
+   /* List<String> findToyNamesBySaleId(Long saleId);*/
 }

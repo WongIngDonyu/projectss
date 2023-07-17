@@ -43,12 +43,12 @@ public class SaleController {
         }
         return clients;
     }
-    @GetMapping("/sales/toysBySale/{saleId}")
+   /* @GetMapping("/sales/toysBySale/{saleId}")
     public List<String> toysBySale(@PathVariable Long saleId) {
         List<String> toyNames = saleService.findToyNamesBySaleId(saleId);
         if (toyNames.isEmpty()) {
             throw new SaleNotFoundException(Math.toIntExact(saleId));
         }
         return toyNames;
-    }
+    }*/
 }

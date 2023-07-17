@@ -21,18 +21,13 @@ public class Sale extends BaseEntity {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToMany(cascade = CascadeType.REFRESH , fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "toy_sale",
-            joinColumns = @JoinColumn(name = "sale_id"),
-            inverseJoinColumns = @JoinColumn(name = "toy_id")
-    )
-    private List<Toy> toys;
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    private List<ToySale> toys;
 
     public Sale() {
     }
 
-    public Sale(String sale_price, LocalDate sale_date, Client client, List<Toy> toys) {
+    public Sale(String sale_price, LocalDate sale_date, Client client, List<ToySale> toys) {
         this.sale_price = sale_price;
         this.sale_date = sale_date;
         this.client = client;
@@ -63,11 +58,11 @@ public class Sale extends BaseEntity {
         this.client = client;
     }
 
-    public List<Toy> getToys() {
+    public List<ToySale> getToys() {
         return toys;
     }
 
-    public void setToys(List<Toy> toys) {
+    public void setToys(List<ToySale> toys) {
         this.toys = toys;
     }
 }
