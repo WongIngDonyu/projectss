@@ -44,4 +44,5 @@ public class ToyServiceImpl implements ToyService<Integer> {
     public List<ToyDto> getAll() {
         return toyRepository.findAll().stream().map((c) -> modelMapper.map(c, ToyDto.class)).collect(Collectors.toList());
     }
+
 }

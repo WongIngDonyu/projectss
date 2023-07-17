@@ -1,6 +1,8 @@
 package com.example.springdatabasicdemo.controllers;
 
 import com.example.springdatabasicdemo.dtos.SaleDto;
+import com.example.springdatabasicdemo.dtos.SaleShortDto;
+import com.example.springdatabasicdemo.dtos.ToyDto;
 import com.example.springdatabasicdemo.models.Sale;
 import com.example.springdatabasicdemo.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +17,14 @@ public class SaleController {
     private SaleService saleService;
 
     @GetMapping("/sales")
-    Iterable<SaleDto> all() {
+    Iterable<SaleShortDto> all() {
         return saleService.getAll();
     }
 
     @GetMapping("/sales/{id}")
-    SaleDto one(@PathVariable Integer id) throws Throwable {
+    SaleShortDto one(@PathVariable Integer id) throws Throwable {
 
-        return (SaleDto) saleService.findSale(id)
+        return (SaleShortDto) saleService.findSale(id)
                 .orElseThrow(() -> new SaleNotFoundException(id));
     }
 
@@ -44,17 +46,14 @@ public class SaleController {
         }
         return clients;
     }
-   /* @GetMapping("/sales/toysBySale/{saleId}")
-    public List<String> toysBySale(@PathVariable Long saleId) {
-        List<String> toyNames = saleService.findToyNamesBySaleId(saleId);
-        if (toyNames.isEmpty()) {
-            throw new SaleNotFoundException(Math.toIntExact(saleId));
-        }
-        return toyNames;
-    }*/
+
    @GetMapping("/sales/{sale_price}/{toyId}")
    public List<Long> findSalesByAmountAndToyId(@PathVariable Long toyId, @PathVariable String sale_price) {
        List<Long> sales = saleService.findSaleIdsByAmountAndToyId(sale_price, toyId);
        return sales;
    }
+    @GetMapping("/sales/{id}/toys")
+    public List<ToyDto> getToysBySaleId(@PathVariable Long id) {
+        return saleService.findToysBySaleId(id);
+    }
 }

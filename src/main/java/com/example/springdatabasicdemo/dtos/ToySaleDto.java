@@ -4,11 +4,11 @@ import com.example.springdatabasicdemo.models.Sale;
 import com.example.springdatabasicdemo.models.Toy;
 
 public class ToySaleDto {
-    private int id;
+    private Long id;
     private Sale sale;
     private Toy toy;
 
-    public ToySaleDto(int id, Sale sale, Toy toy) {
+    public ToySaleDto(Long id, Sale sale, Toy toy) {
         this.id = id;
         this.sale = sale;
         this.toy = toy;
@@ -17,11 +17,11 @@ public class ToySaleDto {
     public ToySaleDto() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

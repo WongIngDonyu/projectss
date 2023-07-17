@@ -2,9 +2,11 @@ package com.example.springdatabasicdemo.services;
 
 import com.example.springdatabasicdemo.dtos.ClientDto;
 import com.example.springdatabasicdemo.dtos.SaleDto;
+import com.example.springdatabasicdemo.dtos.SaleShortDto;
 import com.example.springdatabasicdemo.dtos.ToyDto;
 import com.example.springdatabasicdemo.models.Client;
 import com.example.springdatabasicdemo.models.Sale;
+import com.example.springdatabasicdemo.models.Toy;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,9 +19,10 @@ public interface SaleService<I extends Number> {
 
     void delete(SaleDto sale);
 
-    List<SaleDto> getAll();
+    List<SaleShortDto> getAll();
 
-    Optional<SaleDto> findSale(Integer id);
+    Optional<SaleShortDto> findSale(Integer id);
     List<String> findClientsBySaleDate(LocalDate date);
     List<Long> findSaleIdsByAmountAndToyId(String sale_price, Long toyId);
+    List<ToyDto> findToysBySaleId(Long saleId);
 }

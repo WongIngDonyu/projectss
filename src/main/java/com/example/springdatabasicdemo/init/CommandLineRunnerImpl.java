@@ -52,14 +52,18 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         toysList.add(st1);
         toysList.add(st3);
 
-        SaleDto sa1 = new SaleDto(0, LocalDate.of(2022,11,21), "1991", sc1, toysList);
+        List<ToyDto> toysList2 = new ArrayList<>();
+        toysList2.add(st2);
+        toysList2.add(st3);
 
-        SaleDto sa2 = new SaleDto(0, LocalDate.of(2022,11,21), "2003", sc2, toysList);
+        SaleDto sa1 = new SaleDto(0L, "1488",LocalDate.of(2022,11,21),  sc1, toysList);
 
-        ReviewDto r1 = new ReviewDto(0, 5, "Нормас пивас", sc1, st1);
+        SaleDto sa2 = new SaleDto(0L,"1488", LocalDate.of(2022,11,21),  sc2, toysList2);
+
 
         saleService.register(sa1);
         saleService.register(sa2);
+        ReviewDto r1 = new ReviewDto(0, 5, "Нормас пивас", sc1, st1);
         reviewService.register(r1);
 
 

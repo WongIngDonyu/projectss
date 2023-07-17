@@ -3,21 +3,19 @@ package com.example.springdatabasicdemo.dtos;
 import java.time.LocalDate;
 import java.util.List;
 
-public class SaleDto {
+public class SaleShortDto {
 
     private Long id;
     private String sale_price;
     private LocalDate sale_date;
     private ClientDto client;
-    private List<ToyDto> toys;
-    public SaleDto(){}
+    public SaleShortDto(){}
 
-    public SaleDto(Long id, String sale_price, LocalDate sale_date, ClientDto client, List<ToyDto> toys) {
+    public SaleShortDto(Long id, String sale_price, LocalDate sale_date, ClientDto client) {
         this.id = id;
         this.sale_price = sale_price;
         this.sale_date = sale_date;
         this.client = client;
-        this.toys = toys;
     }
 
     public Long getId() {
@@ -51,13 +49,4 @@ public class SaleDto {
     public void setClient(ClientDto client) {
         this.client = client;
     }
-
-    public List<ToyDto> getToys() {
-        return toys;
-    }
-
-    public void setToys(List<ToyDto> toys) {
-        this.toys = toys;
-    }
-
 }

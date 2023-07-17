@@ -1,6 +1,7 @@
 package com.example.springdatabasicdemo.services.impl;
 
 import com.example.springdatabasicdemo.dtos.SaleDto;
+import com.example.springdatabasicdemo.dtos.SaleShortDto;
 import com.example.springdatabasicdemo.dtos.ToyDto;
 import com.example.springdatabasicdemo.models.Client;
 import com.example.springdatabasicdemo.models.Sale;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -62,14 +64,14 @@ public class SaleServiceImpl implements SaleService<Integer> {
 
 
     @Override
-    public List<SaleDto> getAll() {
-        return saleRepository.findAll().stream().map((sa) -> modelMapper.map(sa, SaleDto.class)).collect(Collectors.toList());
+    public List<SaleShortDto> getAll() {
+        return saleRepository.findAll().stream().map((sa) -> modelMapper.map(sa, SaleShortDto.class)).collect(Collectors.toList());
     }
 
 
     @Override
-    public Optional<SaleDto> findSale(Integer id) {
-        return Optional.empty();
+    public Optional<SaleShortDto> findSale(Integer id){
+        return Optional.ofNullable(modelMapper.map(saleRepository.findById(Long.valueOf(id)), SaleShortDto.class));
     }
 
     @Override
@@ -80,5 +82,9 @@ public class SaleServiceImpl implements SaleService<Integer> {
     public List<Long> findSaleIdsByAmountAndToyId(String sale_price, Long toyId) {
         return saleRepository.findSaleIdsByAmountAndToyId(sale_price, toyId);
     }
-
+    @Override
+    public List<ToyDto> findToysBySaleId(Long saleId) {
+        List<Toy> toys = saleRepository.findToysBySaleId(saleId);
+        return toys.stream().map(toy -> modelMapper.map(toy, ToyDto.class)).collect(Collectors.toList());
+    }
 }
