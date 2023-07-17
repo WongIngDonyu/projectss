@@ -5,16 +5,16 @@ import com.example.springdatabasicdemo.models.Toy;
 
 public class ToySaleDto {
     private Long id;
-    private Sale sale;
-    private Toy toy;
+    private SaleDto sale;
+    private ToyDto toy;
 
-    public ToySaleDto(Long id, Sale sale, Toy toy) {
+    public ToySaleDto() {
+    }
+
+    public ToySaleDto(Long id, SaleDto sale, ToyDto toy) {
         this.id = id;
         this.sale = sale;
         this.toy = toy;
-    }
-
-    public ToySaleDto() {
     }
 
     public Long getId() {
@@ -25,19 +25,19 @@ public class ToySaleDto {
         this.id = id;
     }
 
-    public Sale getSale() {
+    public SaleDto getSale() {
         return sale;
     }
 
-    public void setSale(Sale sale) {
+    public void setSale(SaleDto sale) {
         this.sale = sale;
     }
 
-    public Toy getToy() {
+    public ToyDto getToy() {
         return toy;
     }
 
-    public void setToy(Toy toy) {
+    public void setToy(ToyDto toy) {
         this.toy = toy;
     }
 }
