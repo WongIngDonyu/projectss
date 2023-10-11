@@ -1,32 +1,22 @@
-package com.example.springdatabasicdemo.models;
+package com.example.springdatabasicdemo.dtos;
 
+import com.example.springdatabasicdemo.models.Offer;
+import com.example.springdatabasicdemo.models.UserRole;
 import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entity
-@Table(name = "users")
-public class User extends BaseEntity{
-    @Column(name = "username")
+public class UserDto {
     private String username;
-    @Column(name = "password")
     private String password;
-    @Column(name = "firstName")
     private String firstName;
-    @Column(name = "lastName")
     private String lastName;
-    @Column(name = "isActive")
     private boolean isActive;
-    @Column(name = "imageUrl")
     private String imageUrl;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private UserRole userRole;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<Offer> offers;
-    public User(){}
+    private UserRoleDto userRole;
+    public UserDto(){}
 
-    public User(String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRole userRole, List<Offer> offers) {
+    public UserDto(String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRoleDto userRole) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -34,7 +24,6 @@ public class User extends BaseEntity{
         this.isActive = isActive;
         this.imageUrl = imageUrl;
         this.userRole = userRole;
-        this.offers = offers;
     }
 
     public String getUsername() {
@@ -85,19 +74,11 @@ public class User extends BaseEntity{
         this.imageUrl = imageUrl;
     }
 
-    public UserRole getUserRole() {
+    public UserRoleDto getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(UserRole userRole) {
+    public void setUserRole(UserRoleDto userRole) {
         this.userRole = userRole;
-    }
-
-    public List<Offer> getOffers() {
-        return offers;
-    }
-
-    public void setOffers(List<Offer> offers) {
-        this.offers = offers;
     }
 }

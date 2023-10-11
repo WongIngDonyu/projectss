@@ -1,6 +1,7 @@
 package com.example.springdatabasicdemo.init;
 
 import com.example.springdatabasicdemo.dtos.*;
+import com.example.springdatabasicdemo.models.enums.Category;
 import com.example.springdatabasicdemo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +15,7 @@ import java.util.List;
 @Component
 public class CommandLineRunnerImpl implements CommandLineRunner {
 
-    @Autowired
+    /*@Autowired
     private SaleService saleService;
 
     @Autowired
@@ -23,7 +24,11 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Autowired
     private ClientService clientService;
     @Autowired
-    private ToyService toyService;
+    private ToyService toyService;*/
+    @Autowired
+    private BrandService brandService;
+    @Autowired
+    private ModelService modelService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -33,7 +38,12 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     private void seedData() throws IOException {
         //Добавление в БД записей
 
-        ClientDto c1 = new ClientDto(0, "Egor", "+11111111111", "Egor@gmail.com");
+        BrandDto b1 = new BrandDto(0,"Zoo");
+        BrandDto sb1 = brandService.add(b1);
+
+        ModelDto m1 = new ModelDto("Zoo1", Category.Truck, "SomeUrl", 2023, 2054, sb1);
+        modelService.add(m1);
+        /* ClientDto c1 = new ClientDto(0, "Egor", "+11111111111", "Egor@gmail.com");
         ClientDto sc1 = clientService.add(c1);
 
         ClientDto c2 = new ClientDto(0, "Alah", "+11111111111", "Alah@gmail.com");
@@ -60,7 +70,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         saleService.register(sa1);
         saleService.register(sa2);
-        reviewService.register(r1);
+        reviewService.register(r1);*/
 
 
     }

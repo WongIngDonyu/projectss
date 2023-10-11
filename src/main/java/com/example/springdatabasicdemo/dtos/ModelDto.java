@@ -1,38 +1,27 @@
-package com.example.springdatabasicdemo.models;
+package com.example.springdatabasicdemo.dtos;
 
+import com.example.springdatabasicdemo.models.Brand;
+import com.example.springdatabasicdemo.models.Offer;
 import com.example.springdatabasicdemo.models.enums.Category;
 import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entity
-@Table(name = "models")
-public class Model extends BaseEntity{
-    @Column(name = "modelName")
+public class ModelDto {
     private String name;
-    @Column(name = "category")
     private Category category;
-    @Column(name = "imageUrl")
     private String imageUrl;
-    @Column(name = "startYear")
     private int startYear;
-    @Column(name = "endYear")
     private int endYear;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
-    @OneToMany(mappedBy = "model", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<Offer> offers;
-    public Model(){}
-
-    public Model(String name, Category category, String imageUrl, int startYear, int endYear, Brand brand, List<Offer> offers) {
+    private BrandDto brand;
+    public ModelDto(){}
+    public ModelDto(String name, Category category, String imageUrl, int startYear, int endYear, BrandDto brand) {
         this.name = name;
         this.category = category;
         this.imageUrl = imageUrl;
         this.startYear = startYear;
         this.endYear = endYear;
         this.brand = brand;
-        this.offers = offers;
     }
 
     public String getName() {
@@ -75,19 +64,11 @@ public class Model extends BaseEntity{
         this.endYear = endYear;
     }
 
-    public Brand getBrand() {
+    public BrandDto getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    public void setBrand(BrandDto brand) {
         this.brand = brand;
-    }
-
-    public List<Offer> getOffers() {
-        return offers;
-    }
-
-    public void setOffers(List<Offer> offers) {
-        this.offers = offers;
     }
 }

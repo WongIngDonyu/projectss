@@ -1,35 +1,24 @@
-package com.example.springdatabasicdemo.models;
+package com.example.springdatabasicdemo.dtos;
 
+import com.example.springdatabasicdemo.models.Model;
+import com.example.springdatabasicdemo.models.User;
 import com.example.springdatabasicdemo.models.enums.Engine;
 import com.example.springdatabasicdemo.models.enums.Transmission;
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "offers")
-public class Offer extends BaseEntity{
-    @Column(name = "description")
+public class OfferDto {
     private String description;
-    @Column(name = "engine")
     private Engine engine;
-    @Column(name = "imageUrl")
     private String imageUrl;
-    @Column(name = "mileage")
     private int mileage;
-    @Column(name = "price")
     private int price;
-    @Column(name = "transmission")
     private Transmission transmission;
-    @Column(name = "year")
     private int year;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "model_id")
-    private Model model;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id")
-    private User user;
+    private ModelDto model;
+    private UserDto user;
+    public OfferDto(){}
 
-    public Offer(){}
-    public Offer(String description, Engine engine, String imageUrl, int mileage, int price, Transmission transmission, int year, Model model, User user) {
+    public OfferDto(String description, Engine engine, String imageUrl, int mileage, int price, Transmission transmission, int year, ModelDto model, UserDto user) {
         this.description = description;
         this.engine = engine;
         this.imageUrl = imageUrl;
@@ -97,19 +86,19 @@ public class Offer extends BaseEntity{
         this.year = year;
     }
 
-    public Model getModel() {
+    public ModelDto getModel() {
         return model;
     }
 
-    public void setModel(Model model) {
+    public void setModel(ModelDto model) {
         this.model = model;
     }
 
-    public User getUser() {
+    public UserDto getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDto user) {
         this.user = user;
     }
 }
