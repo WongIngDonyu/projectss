@@ -8,12 +8,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
-public class CommandLineRunnerImpl implements CommandLineRunner {
+public class DataInitializer implements CommandLineRunner {
     @Autowired
     private BrandService brandService;
     @Autowired
