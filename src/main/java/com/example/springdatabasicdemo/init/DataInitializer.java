@@ -24,9 +24,12 @@ public class DataInitializer implements CommandLineRunner {
     private void seedData() throws IOException {
         BrandDto b1 = new BrandDto(0,"Zoo");
         BrandDto sb1 = brandService.add(b1);
+        BrandDto b2 = new BrandDto(0,"zzzzzz");
+        BrandDto sb2 = brandService.add(b2);
 
         ModelDto m1 = new ModelDto(0,"Zoo1", Category.Truck, "SomeUrl", 2023, 2054, sb1);
         modelService.add(m1);
-        brandService.delete(1);
+        ModelDto modelDto = new ModelDto(0,"sadasd", Category.Car, "SomeUrl", 2023, 2054, sb2);
+        modelService.update(1, modelDto);
     }
 }

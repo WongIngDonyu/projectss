@@ -1,6 +1,5 @@
 package com.example.springdatabasicdemo.services.impl;
 
-import com.example.springdatabasicdemo.dtos.BrandDto;
 import com.example.springdatabasicdemo.dtos.ModelDto;
 import com.example.springdatabasicdemo.models.Brand;
 import com.example.springdatabasicdemo.models.Model;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -57,4 +57,27 @@ public class ModelServiceImpl  implements ModelService<Integer> {
         m.setCreated(LocalDateTime.now());
         return modelMapper.map(modelRepository.save(m), ModelDto.class);
     }
+
+    @Override
+    public void update(int id, ModelDto modelDto) {
+        Model model = modelRepository.findById(id).orElse(null);
+        if(model!=null){
+            model.setName(modelDto.getName());
+            model.setCategory(modelDto.getCategory());
+            model.setImageUrl(modelDto.getImageUrl());
+            model.setStartYear(modelDto.getStartYear());
+            model.setEndYear(modelDto.getEndYear());
+            if (modelDto.getBrand() != null) {
+                Brand brand = modelMapper.map(modelDto.getBrand(), Brand.class);
+                model.setBrand(brand);
+            }
+            model.setModified(LocalDateTime.now());
+            modelRepository.save(model);
+        }
+        else {
+            throw new NoSuchElementException("Model not found. id:" + id);
+        }
+    }
+
+
 }

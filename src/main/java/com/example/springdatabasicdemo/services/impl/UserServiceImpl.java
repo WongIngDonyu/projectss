@@ -2,7 +2,6 @@ package com.example.springdatabasicdemo.services.impl;
 
 import com.example.springdatabasicdemo.dtos.UserDto;
 import com.example.springdatabasicdemo.repositories.UserRepository;
-import com.example.springdatabasicdemo.services.UserRoleService;
 import com.example.springdatabasicdemo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

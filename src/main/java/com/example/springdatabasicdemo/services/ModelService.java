@@ -15,4 +15,6 @@ public interface ModelService <I extends Number>{
     Optional<ModelDto> findModel(Integer id);
 
     ModelDto add(ModelDto model);
+
+    void update(int id,ModelDto modelDto);
 }

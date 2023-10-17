@@ -1,11 +1,6 @@
 package com.example.springdatabasicdemo.dtos;
 
-import com.example.springdatabasicdemo.models.Brand;
-import com.example.springdatabasicdemo.models.Offer;
 import com.example.springdatabasicdemo.models.enums.Category;
-import jakarta.persistence.*;
-
-import java.util.List;
 
 public class ModelDto {
     private int id;
