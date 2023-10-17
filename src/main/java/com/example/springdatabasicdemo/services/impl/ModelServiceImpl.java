@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class ModelServiceImpl  implements ModelService<Integer> {
     @Autowired
@@ -26,22 +28,22 @@ public class ModelServiceImpl  implements ModelService<Integer> {
 
     @Override
     public void delete(ModelDto model) {
-
+        modelRepository.deleteById(model.getId());
     }
 
     @Override
     public void delete(Integer id) {
-
+        modelRepository.deleteById(id);
     }
 
     @Override
     public List<ModelDto> getAll() {
-        return null;
+        return modelRepository.findAll().stream().map((m)->modelMapper.map(m, ModelDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public Optional<ModelDto> findModel(Integer id) {
-        return Optional.empty();
+        return Optional.ofNullable(modelMapper.map(modelRepository.findById(id), ModelDto.class));
     }
 
     @Override

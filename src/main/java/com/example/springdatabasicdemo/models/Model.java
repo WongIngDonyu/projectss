@@ -18,7 +18,7 @@ public class Model extends BaseEntity{
     private int startYear;
     @Column(name = "endYear")
     private int endYear;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
     private Brand brand;
     @OneToMany(mappedBy = "model", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

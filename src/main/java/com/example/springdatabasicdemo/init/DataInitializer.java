@@ -25,7 +25,8 @@ public class DataInitializer implements CommandLineRunner {
         BrandDto b1 = new BrandDto(0,"Zoo");
         BrandDto sb1 = brandService.add(b1);
 
-        ModelDto m1 = new ModelDto("Zoo1", Category.Truck, "SomeUrl", 2023, 2054, sb1);
+        ModelDto m1 = new ModelDto(0,"Zoo1", Category.Truck, "SomeUrl", 2023, 2054, sb1);
         modelService.add(m1);
+        brandService.delete(1);
     }
 }

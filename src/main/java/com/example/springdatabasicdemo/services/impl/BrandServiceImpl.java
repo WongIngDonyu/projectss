@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BrandServiceImpl implements BrandService<Integer> {
@@ -21,22 +22,22 @@ public class BrandServiceImpl implements BrandService<Integer> {
 
     @Override
     public void delete(BrandDto brand) {
-
+        brandRepository.deleteById(brand.getId());
     }
 
     @Override
     public void delete(Integer id) {
-
+        brandRepository.deleteById(id);
     }
 
     @Override
     public List<BrandDto> getAll() {
-        return null;
+        return brandRepository.findAll().stream().map((b) -> modelMapper.map(b, BrandDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public Optional<BrandDto> findBrand(Integer id) {
-        return Optional.empty();
+        return Optional.ofNullable(modelMapper.map(brandRepository.findById(id), BrandDto.class));
     }
 
     @Override

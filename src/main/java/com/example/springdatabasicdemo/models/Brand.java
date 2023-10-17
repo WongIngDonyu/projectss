@@ -9,7 +9,7 @@ import java.util.List;
 public class Brand extends BaseEntity{
     @Column(name = "brandName")
     private String name;
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Model> models;
 
     public Brand(){}
