@@ -53,7 +53,6 @@ public class ModelServiceImpl  implements ModelService<Integer> {
             Brand b = brandRepository.findById(model.getBrand().getId()).get();
             m.setBrand(b);
         }
-
         m.setCreated(LocalDateTime.now());
         return modelMapper.map(modelRepository.save(m), ModelDto.class);
     }
@@ -67,6 +66,7 @@ public class ModelServiceImpl  implements ModelService<Integer> {
             model.setImageUrl(modelDto.getImageUrl());
             model.setStartYear(modelDto.getStartYear());
             model.setEndYear(modelDto.getEndYear());
+            //modelMapper.map(modelDto, model); пишет что почему-то проблема в getName Brand'a
             if (modelDto.getBrand() != null) {
                 Brand brand = modelMapper.map(modelDto.getBrand(), Brand.class);
                 model.setBrand(brand);

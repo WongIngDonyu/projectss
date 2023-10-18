@@ -7,6 +7,7 @@ import com.example.springdatabasicdemo.models.enums.Transmission;
 import jakarta.persistence.*;
 
 public class OfferDto {
+    private int id;
     private String description;
     private Engine engine;
     private String imageUrl;
@@ -18,7 +19,8 @@ public class OfferDto {
     private UserDto user;
     public OfferDto(){}
 
-    public OfferDto(String description, Engine engine, String imageUrl, int mileage, int price, Transmission transmission, int year, ModelDto model, UserDto user) {
+    public OfferDto(int id, String description, Engine engine, String imageUrl, int mileage, int price, Transmission transmission, int year, ModelDto model, UserDto user) {
+        this.id = id;
         this.description = description;
         this.engine = engine;
         this.imageUrl = imageUrl;
@@ -28,6 +30,14 @@ public class OfferDto {
         this.year = year;
         this.model = model;
         this.user = user;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {

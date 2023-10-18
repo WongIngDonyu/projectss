@@ -9,7 +9,7 @@ import java.util.Date;
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = true)
     protected int id;
     @Column(name = "created")
     protected LocalDateTime created;

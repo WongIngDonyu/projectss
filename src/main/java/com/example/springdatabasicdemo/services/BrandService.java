@@ -15,4 +15,5 @@ public interface BrandService <I extends Number>{
     Optional<BrandDto> findBrand(Integer id);
 
     BrandDto add(BrandDto brand);
+    void update(int id, BrandDto brand);
 }

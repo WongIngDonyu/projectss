@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity{
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
     @Column(name = "password")
     private String password;
@@ -19,10 +19,10 @@ public class User extends BaseEntity{
     private boolean isActive;
     @Column(name = "imageUrl")
     private String imageUrl;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
     private UserRole userRole;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Offer> offers;
     public User(){}
 

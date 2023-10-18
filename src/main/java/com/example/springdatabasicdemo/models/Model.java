@@ -18,10 +18,10 @@ public class Model extends BaseEntity{
     private int startYear;
     @Column(name = "endYear")
     private int endYear;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
     private Brand brand;
-    @OneToMany(mappedBy = "model", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "model", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Offer> offers;
     public Model(){}
 

@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 public class UserDto {
+    private int id;
     private String username;
     private String password;
     private String firstName;
@@ -16,7 +17,8 @@ public class UserDto {
     private UserRoleDto userRole;
     public UserDto(){}
 
-    public UserDto(String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRoleDto userRole) {
+    public UserDto(int id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRoleDto userRole) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -24,6 +26,14 @@ public class UserDto {
         this.isActive = isActive;
         this.imageUrl = imageUrl;
         this.userRole = userRole;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {

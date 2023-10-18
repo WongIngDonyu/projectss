@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -46,4 +47,18 @@ public class BrandServiceImpl implements BrandService<Integer> {
         b.setCreated(LocalDateTime.now());
         return modelMapper.map(brandRepository.save(b), BrandDto.class);
     }
+
+    @Override
+    public void update(int id, BrandDto brandDto) {
+        Brand brand = brandRepository.findById(id).orElse(null);
+        if(brand!=null){
+            brand.setName(brandDto.getName());
+            brand.setModified(LocalDateTime.now());
+            brandRepository.save(brand);
+        }
+        else {
+            throw new NoSuchElementException("Model not found. id:" + id);
+        }
+    }
+
 }
