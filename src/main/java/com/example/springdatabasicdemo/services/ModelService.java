@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ModelService <I extends Number>{
+public interface ModelService <I extends UUID>{
     void delete(ModelDto model);
 
     void delete(UUID id);
@@ -17,5 +17,5 @@ public interface ModelService <I extends Number>{
 
     ModelDto add(ModelDto model);
 
-    void update(UUID id, ModelDto modelDto);
+    ModelDto update(ModelDto modelDto);
 }

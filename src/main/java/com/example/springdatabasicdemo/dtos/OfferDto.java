@@ -3,6 +3,7 @@ package com.example.springdatabasicdemo.dtos;
 import com.example.springdatabasicdemo.models.enums.Engine;
 import com.example.springdatabasicdemo.models.enums.Transmission;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class OfferDto {
@@ -16,9 +17,11 @@ public class OfferDto {
     private int year;
     private ModelDto model;
     private UserDto user;
+    private LocalDateTime created;
+    private LocalDateTime modified;
     public OfferDto(){}
 
-    public OfferDto(UUID id, String description, Engine engine, String imageUrl, int mileage, int price, Transmission transmission, int year, ModelDto model, UserDto user) {
+    public OfferDto(UUID id, String description, Engine engine, String imageUrl, int mileage, int price, Transmission transmission, int year, ModelDto model, UserDto user, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.description = description;
         this.engine = engine;
@@ -29,6 +32,8 @@ public class OfferDto {
         this.year = year;
         this.model = model;
         this.user = user;
+        this.created = created;
+        this.modified = modified;
     }
 
     public UUID getId() {
@@ -109,5 +114,21 @@ public class OfferDto {
 
     public void setUser(UserDto user) {
         this.user = user;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDateTime modified) {
+        this.modified = modified;
     }
 }

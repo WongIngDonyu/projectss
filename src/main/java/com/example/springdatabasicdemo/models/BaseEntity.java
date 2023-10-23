@@ -17,6 +17,14 @@ public abstract class BaseEntity {
     @Column(name = "modified")
     protected LocalDateTime modified;
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public LocalDateTime getCreated() {
         return created;
     }
@@ -31,13 +39,5 @@ public abstract class BaseEntity {
 
     public void setModified(LocalDateTime modified) {
         this.modified = modified;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    protected void setId(UUID id) {
-        this.id = id;
     }
 }

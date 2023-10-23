@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface BrandService <I extends Number>{
+public interface BrandService <I extends UUID>{
     void delete(BrandDto brand);
 
     void delete(UUID id);
@@ -16,5 +16,5 @@ public interface BrandService <I extends Number>{
     Optional<BrandDto> findBrand(UUID id);
 
     BrandDto add(BrandDto brand);
-    void update(UUID id, BrandDto brand);
+    BrandDto update(BrandDto brand);
 }

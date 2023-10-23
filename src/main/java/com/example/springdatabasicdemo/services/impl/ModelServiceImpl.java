@@ -1,5 +1,6 @@
 package com.example.springdatabasicdemo.services.impl;
 
+import com.example.springdatabasicdemo.dtos.BrandDto;
 import com.example.springdatabasicdemo.dtos.ModelDto;
 import com.example.springdatabasicdemo.models.Brand;
 import com.example.springdatabasicdemo.models.Model;
@@ -18,7 +19,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class ModelServiceImpl  implements ModelService<Integer> {
+public class ModelServiceImpl  implements ModelService<UUID> {
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
@@ -50,32 +51,28 @@ public class ModelServiceImpl  implements ModelService<Integer> {
     @Override
     public ModelDto add(ModelDto model) {
         Model m = modelMapper.map(model, Model.class);
-
+        Brand b = brandRepository.findById(model.getBrand().getId()).get();
+        m.setBrand(b);
         m.setCreated(LocalDateTime.now());
         return modelMapper.map(modelRepository.save(m), ModelDto.class);
     }
 
     @Override
-    public void update(UUID id, ModelDto modelDto) {
-        Model model = modelRepository.findById(id).orElse(null);
-        if(model!=null){
-            model.setName(modelDto.getName());
-            model.setCategory(modelDto.getCategory());
-            model.setImageUrl(modelDto.getImageUrl());
-            model.setStartYear(modelDto.getStartYear());
-            model.setEndYear(modelDto.getEndYear());
-            //modelMapper.map(modelDto, model); пишет что почему-то проблема в getName Brand'a
+    public ModelDto update(ModelDto modelDto) {
+        Optional<Model> dbModel = modelRepository.findById(modelDto.getId());
+        if(dbModel.isEmpty()){
+            throw new NoSuchElementException("Model not found");
+        }
+        else {
+            Model model = modelMapper.map(modelDto, Model.class);
             if (modelDto.getBrand() != null) {
                 Brand brand = modelMapper.map(modelDto.getBrand(), Brand.class);
                 model.setBrand(brand);
             }
+            else {throw new NoSuchElementException("Brand not found.");}
             model.setModified(LocalDateTime.now());
-            modelRepository.save(model);
-        }
-        else {
-            throw new NoSuchElementException("Model not found. id:" + id);
+            return modelMapper.map(modelRepository.save(model), ModelDto.class);
         }
     }
-
 
 }

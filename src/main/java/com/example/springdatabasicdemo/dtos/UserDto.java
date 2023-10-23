@@ -1,5 +1,6 @@
 package com.example.springdatabasicdemo.dtos;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class UserDto {
@@ -11,9 +12,11 @@ public class UserDto {
     private boolean isActive;
     private String imageUrl;
     private UserRoleDto userRole;
+    private LocalDateTime created;
+    private LocalDateTime modified;
     public UserDto(){}
 
-    public UserDto(UUID id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRoleDto userRole) {
+    public UserDto(UUID id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRoleDto userRole, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -22,6 +25,8 @@ public class UserDto {
         this.isActive = isActive;
         this.imageUrl = imageUrl;
         this.userRole = userRole;
+        this.created = created;
+        this.modified = modified;
     }
 
     public UUID getId() {
@@ -86,5 +91,21 @@ public class UserDto {
 
     public void setUserRole(UserRoleDto userRole) {
         this.userRole = userRole;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDateTime modified) {
+        this.modified = modified;
     }
 }

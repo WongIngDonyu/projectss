@@ -7,6 +7,7 @@ import java.util.UUID;
 public class UserRoleDto {
     private UUID id;
     private Role role;
+
     public UserRoleDto(){}
 
     public UserRoleDto(UUID id, Role role) {

@@ -16,7 +16,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class BrandServiceImpl implements BrandService<Integer> {
+public class BrandServiceImpl implements BrandService<UUID> {
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
@@ -50,15 +50,15 @@ public class BrandServiceImpl implements BrandService<Integer> {
     }
 
     @Override
-    public void update(UUID id, BrandDto brandDto) {
-        Brand brand = brandRepository.findById(id).orElse(null);
-        if(brand!=null){
-            brand.setName(brandDto.getName());
-            brand.setModified(LocalDateTime.now());
-            brandRepository.save(brand);
+    public BrandDto update(BrandDto brandDto) {
+        Optional<Brand> dbBrand = brandRepository.findById(brandDto.getId());
+        if(dbBrand.isEmpty()){
+            throw new NoSuchElementException("Brand not found");
         }
         else {
-            throw new NoSuchElementException("Model not found. id:" + id);
+            Brand brand1 = modelMapper.map(brandDto, Brand.class);
+            brand1.setModified(LocalDateTime.now());
+            return modelMapper.map(brandRepository.save(brand1), BrandDto.class);
         }
     }
 
