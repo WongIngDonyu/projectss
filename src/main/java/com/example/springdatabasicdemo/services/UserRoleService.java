@@ -4,15 +4,16 @@ import com.example.springdatabasicdemo.dtos.UserRoleDto;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface UserRoleService <I extends Number>{
     void delete(UserRoleDto userRole);
 
-    void delete(Integer id);
+    void delete(UUID id);
 
     List<UserRoleDto> getAll();
 
-    Optional<UserRoleDto> findUserRole(Integer id);
+    Optional<UserRoleDto> findUserRole(UUID id);
 
     UserRoleDto add(UserRoleDto userRole);
 }

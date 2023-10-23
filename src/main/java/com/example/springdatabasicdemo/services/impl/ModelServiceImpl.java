@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,7 +33,7 @@ public class ModelServiceImpl  implements ModelService<Integer> {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(UUID id) {
         modelRepository.deleteById(id);
     }
 
@@ -42,23 +43,20 @@ public class ModelServiceImpl  implements ModelService<Integer> {
     }
 
     @Override
-    public Optional<ModelDto> findModel(Integer id) {
+    public Optional<ModelDto> findModel(UUID id) {
         return Optional.ofNullable(modelMapper.map(modelRepository.findById(id), ModelDto.class));
     }
 
     @Override
     public ModelDto add(ModelDto model) {
         Model m = modelMapper.map(model, Model.class);
-        if(model.getBrand().getId()!=0){
-            Brand b = brandRepository.findById(model.getBrand().getId()).get();
-            m.setBrand(b);
-        }
+
         m.setCreated(LocalDateTime.now());
         return modelMapper.map(modelRepository.save(m), ModelDto.class);
     }
 
     @Override
-    public void update(int id, ModelDto modelDto) {
+    public void update(UUID id, ModelDto modelDto) {
         Model model = modelRepository.findById(id).orElse(null);
         if(model!=null){
             model.setName(modelDto.getName());

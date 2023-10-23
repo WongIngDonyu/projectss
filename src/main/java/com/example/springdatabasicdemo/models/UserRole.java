@@ -4,31 +4,32 @@ import com.example.springdatabasicdemo.models.enums.Role;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "roles")
 public class UserRole {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    private int id;
+    private UUID id;
     @Column(name = "role")
     private Role role;
     @OneToMany(mappedBy = "userRole", fetch = FetchType.LAZY)
     private List<User> users;
     public UserRole(){}
 
-    public UserRole(int id, Role role, List<User> users) {
+    public UserRole(UUID id, Role role, List<User> users) {
         this.id = id;
         this.role = role;
         this.users = users;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

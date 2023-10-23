@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,7 +36,7 @@ public class OfferServiceImpl implements OfferService<Integer> {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(UUID id) {
         offerRepository.deleteById(id);
     }
 
@@ -46,7 +47,7 @@ public class OfferServiceImpl implements OfferService<Integer> {
     }
 
     @Override
-    public Optional<OfferDto> findOffer(Integer id) {
+    public Optional<OfferDto> findOffer(UUID id) {
         return Optional.ofNullable(modelMapper.map(offerRepository.findById(id), OfferDto.class));
     }
 

@@ -1,13 +1,9 @@
 package com.example.springdatabasicdemo.dtos;
 
-import com.example.springdatabasicdemo.models.Offer;
-import com.example.springdatabasicdemo.models.UserRole;
-import jakarta.persistence.*;
-
-import java.util.List;
+import java.util.UUID;
 
 public class UserDto {
-    private int id;
+    private UUID id;
     private String username;
     private String password;
     private String firstName;
@@ -17,7 +13,7 @@ public class UserDto {
     private UserRoleDto userRole;
     public UserDto(){}
 
-    public UserDto(int id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRoleDto userRole) {
+    public UserDto(UUID id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRoleDto userRole) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -28,11 +24,11 @@ public class UserDto {
         this.userRole = userRole;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 @MappedSuperclass
 public abstract class BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = true)
-    protected int id;
+    protected UUID id;
     @Column(name = "created")
     protected LocalDateTime created;
     @Column(name = "modified")
@@ -32,11 +33,11 @@ public abstract class BaseEntity {
         this.modified = modified;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    protected void setId(int id) {
+    protected void setId(UUID id) {
         this.id = id;
     }
 }

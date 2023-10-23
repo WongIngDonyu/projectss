@@ -4,16 +4,17 @@ import com.example.springdatabasicdemo.dtos.BrandDto;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface BrandService <I extends Number>{
     void delete(BrandDto brand);
 
-    void delete(Integer id);
+    void delete(UUID id);
 
     List<BrandDto> getAll();
 
-    Optional<BrandDto> findBrand(Integer id);
+    Optional<BrandDto> findBrand(UUID id);
 
     BrandDto add(BrandDto brand);
-    void update(int id, BrandDto brand);
+    void update(UUID id, BrandDto brand);
 }

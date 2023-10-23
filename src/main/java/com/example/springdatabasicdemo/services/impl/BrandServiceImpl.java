@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,7 +28,7 @@ public class BrandServiceImpl implements BrandService<Integer> {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(UUID id) {
         brandRepository.deleteById(id);
     }
 
@@ -37,7 +38,7 @@ public class BrandServiceImpl implements BrandService<Integer> {
     }
 
     @Override
-    public Optional<BrandDto> findBrand(Integer id) {
+    public Optional<BrandDto> findBrand(UUID id) {
         return Optional.ofNullable(modelMapper.map(brandRepository.findById(id), BrandDto.class));
     }
 
@@ -49,7 +50,7 @@ public class BrandServiceImpl implements BrandService<Integer> {
     }
 
     @Override
-    public void update(int id, BrandDto brandDto) {
+    public void update(UUID id, BrandDto brandDto) {
         Brand brand = brandRepository.findById(id).orElse(null);
         if(brand!=null){
             brand.setName(brandDto.getName());

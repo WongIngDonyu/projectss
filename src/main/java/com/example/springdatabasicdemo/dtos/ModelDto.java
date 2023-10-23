@@ -2,8 +2,10 @@ package com.example.springdatabasicdemo.dtos;
 
 import com.example.springdatabasicdemo.models.enums.Category;
 
+import java.util.UUID;
+
 public class ModelDto {
-    private int id;
+    private UUID id;
     private String name;
     private Category category;
     private String imageUrl;
@@ -12,7 +14,7 @@ public class ModelDto {
     private BrandDto brand;
     public ModelDto(){}
 
-    public ModelDto(int id, String name, Category category, String imageUrl, int startYear, int endYear, BrandDto brand) {
+    public ModelDto(UUID id, String name, Category category, String imageUrl, int startYear, int endYear, BrandDto brand) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -22,11 +24,11 @@ public class ModelDto {
         this.brand = brand;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

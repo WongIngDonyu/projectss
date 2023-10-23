@@ -1,26 +1,24 @@
 package com.example.springdatabasicdemo.dtos;
 
 import com.example.springdatabasicdemo.models.enums.Role;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import java.util.UUID;
 
 public class UserRoleDto {
-    private int id;
+    private UUID id;
     private Role role;
     public UserRoleDto(){}
 
-    public UserRoleDto(int id, Role role) {
+    public UserRoleDto(UUID id, Role role) {
         this.id = id;
         this.role = role;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

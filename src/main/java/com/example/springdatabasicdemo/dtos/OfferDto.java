@@ -1,13 +1,12 @@
 package com.example.springdatabasicdemo.dtos;
 
-import com.example.springdatabasicdemo.models.Model;
-import com.example.springdatabasicdemo.models.User;
 import com.example.springdatabasicdemo.models.enums.Engine;
 import com.example.springdatabasicdemo.models.enums.Transmission;
-import jakarta.persistence.*;
+
+import java.util.UUID;
 
 public class OfferDto {
-    private int id;
+    private UUID id;
     private String description;
     private Engine engine;
     private String imageUrl;
@@ -19,7 +18,7 @@ public class OfferDto {
     private UserDto user;
     public OfferDto(){}
 
-    public OfferDto(int id, String description, Engine engine, String imageUrl, int mileage, int price, Transmission transmission, int year, ModelDto model, UserDto user) {
+    public OfferDto(UUID id, String description, Engine engine, String imageUrl, int mileage, int price, Transmission transmission, int year, ModelDto model, UserDto user) {
         this.id = id;
         this.description = description;
         this.engine = engine;
@@ -32,11 +31,11 @@ public class OfferDto {
         this.user = user;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

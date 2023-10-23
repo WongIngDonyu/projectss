@@ -1,29 +1,23 @@
 package com.example.springdatabasicdemo.dtos;
 
-import com.example.springdatabasicdemo.models.Model;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-
-import java.util.List;
+import java.util.UUID;
 
 public class BrandDto {
-    private int id;
+    private UUID id;
     private String name;
 
     public BrandDto(){}
 
-    public BrandDto(int id, String name) {
+    public BrandDto(UUID id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

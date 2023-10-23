@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,7 +27,7 @@ public class UserRoleServiceImpl implements UserRoleService<Integer> {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(UUID id) {
         userRoleRepository.deleteById(id);
     }
 
@@ -36,7 +37,7 @@ public class UserRoleServiceImpl implements UserRoleService<Integer> {
     }
 
     @Override
-    public Optional<UserRoleDto> findUserRole(Integer id) {
+    public Optional<UserRoleDto> findUserRole(UUID id) {
         return Optional.ofNullable(modelMapper.map(userRoleRepository.findById(id), UserRoleDto.class));
     }
 
@@ -45,4 +46,6 @@ public class UserRoleServiceImpl implements UserRoleService<Integer> {
         UserRole u = modelMapper.map(userRole, UserRole.class);
         return modelMapper.map(userRoleRepository.save(u), UserRoleDto.class);
     }
+
+
 }
