@@ -16,12 +16,13 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService<Integer> {
+public class UserServiceImpl implements UserService<UUID> {
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -50,9 +51,29 @@ public class UserServiceImpl implements UserService<Integer> {
     }
 
     @Override
-    public UserDto add(UserDto user) {
+    public UserDto add(UserDto user, UserRoleDto userRoleDto) {
         User u = modelMapper.map(user, User.class);
+        UserRole userRole = userRoleRepository.findById(userRoleDto.getId()).orElse(null);
+        if (userRole != null) {
+            u.setUserRole(userRole);
+        }
+        else {
+            throw new NoSuchElementException("UserRole not found");
+        }
         u.setCreated(LocalDateTime.now());
         return modelMapper.map(userRepository.save(u), UserDto.class);
+    }
+
+    @Override
+    public UserDto update(UserDto userDto) {
+        Optional<User> dbUser = userRepository.findById(userDto.getId());
+        if (dbUser.isEmpty()) {
+            throw new NoSuchElementException("User not found");
+        } else {
+            User user1 = dbUser.get();
+            modelMapper.map(userDto, user1);
+            user1.setModified(LocalDateTime.now());
+            return modelMapper.map(userRepository.save(user1), UserDto.class);
+        }
     }
 }

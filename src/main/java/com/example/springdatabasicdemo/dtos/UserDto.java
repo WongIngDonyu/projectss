@@ -11,12 +11,11 @@ public class UserDto {
     private String lastName;
     private boolean isActive;
     private String imageUrl;
-    private UserRoleDto userRole;
     private LocalDateTime created;
     private LocalDateTime modified;
     public UserDto(){}
 
-    public UserDto(UUID id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRoleDto userRole, LocalDateTime created, LocalDateTime modified) {
+    public UserDto(UUID id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl,  LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -24,7 +23,6 @@ public class UserDto {
         this.lastName = lastName;
         this.isActive = isActive;
         this.imageUrl = imageUrl;
-        this.userRole = userRole;
         this.created = created;
         this.modified = modified;
     }
@@ -85,13 +83,6 @@ public class UserDto {
         this.imageUrl = imageUrl;
     }
 
-    public UserRoleDto getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(UserRoleDto userRole) {
-        this.userRole = userRole;
-    }
 
     public LocalDateTime getCreated() {
         return created;

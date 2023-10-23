@@ -19,7 +19,7 @@ public class User extends BaseEntity{
     private boolean isActive;
     @Column(name = "imageUrl")
     private String imageUrl;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private UserRole userRole;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

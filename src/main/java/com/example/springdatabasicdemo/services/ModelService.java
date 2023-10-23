@@ -1,5 +1,6 @@
 package com.example.springdatabasicdemo.services;
 
+import com.example.springdatabasicdemo.dtos.BrandDto;
 import com.example.springdatabasicdemo.dtos.ModelDto;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface ModelService <I extends UUID>{
 
     Optional<ModelDto> findModel(UUID id);
 
-    ModelDto add(ModelDto model);
+    ModelDto add(ModelDto model, BrandDto brandDto);
 
-    ModelDto update(ModelDto modelDto);
+    ModelDto update(ModelDto modelDt);
 }

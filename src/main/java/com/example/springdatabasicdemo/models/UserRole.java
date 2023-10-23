@@ -15,7 +15,7 @@ public class UserRole {
     private UUID id;
     @Column(name = "role")
     private Role role;
-    @OneToMany(mappedBy = "userRole", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userRole",cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<User> users;
     public UserRole(){}
 

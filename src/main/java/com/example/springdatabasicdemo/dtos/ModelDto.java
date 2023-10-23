@@ -12,19 +12,17 @@ public class ModelDto {
     private String imageUrl;
     private int startYear;
     private int endYear;
-    private BrandDto brand;
     private LocalDateTime created;
     private LocalDateTime modified;
     public ModelDto(){}
 
-    public ModelDto(UUID id, String name, Category category, String imageUrl, int startYear, int endYear, BrandDto brand, LocalDateTime created, LocalDateTime modified) {
+    public ModelDto(UUID id, String name, Category category, String imageUrl, int startYear, int endYear,  LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.imageUrl = imageUrl;
         this.startYear = startYear;
         this.endYear = endYear;
-        this.brand = brand;
         this.created = created;
         this.modified = modified;
     }
@@ -75,14 +73,6 @@ public class ModelDto {
 
     public void setEndYear(int endYear) {
         this.endYear = endYear;
-    }
-
-    public BrandDto getBrand() {
-        return brand;
-    }
-
-    public void setBrand(BrandDto brand) {
-        this.brand = brand;
     }
 
     public LocalDateTime getCreated() {

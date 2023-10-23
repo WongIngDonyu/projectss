@@ -90,5 +90,4 @@ public class Model extends BaseEntity{
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
     }
-
 }

@@ -1,6 +1,8 @@
 package com.example.springdatabasicdemo.services.impl;
 
+import com.example.springdatabasicdemo.dtos.BrandDto;
 import com.example.springdatabasicdemo.dtos.UserRoleDto;
+import com.example.springdatabasicdemo.models.Brand;
 import com.example.springdatabasicdemo.models.UserRole;
 import com.example.springdatabasicdemo.repositories.UserRoleRepository;
 import com.example.springdatabasicdemo.services.UserRoleService;
@@ -10,12 +12,13 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class UserRoleServiceImpl implements UserRoleService<Integer> {
+public class UserRoleServiceImpl implements UserRoleService<UUID> {
     @Autowired
     private UserRoleRepository userRoleRepository;
     @Autowired
@@ -45,6 +48,18 @@ public class UserRoleServiceImpl implements UserRoleService<Integer> {
     public UserRoleDto add(UserRoleDto userRole) {
         UserRole u = modelMapper.map(userRole, UserRole.class);
         return modelMapper.map(userRoleRepository.save(u), UserRoleDto.class);
+    }
+
+    @Override
+    public UserRoleDto update(UserRoleDto userRole) {
+        Optional<UserRole> dbRole = userRoleRepository.findById(userRole.getId());
+        if(dbRole.isEmpty()){
+            throw new NoSuchElementException("Role not found");
+        }
+        else {
+            UserRole userRole1 = modelMapper.map(userRole, UserRole.class);
+            return modelMapper.map(userRoleRepository.save(userRole1), UserRoleDto.class);
+        }
     }
 
 

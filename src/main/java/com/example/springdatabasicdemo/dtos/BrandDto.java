@@ -1,22 +1,36 @@
 package com.example.springdatabasicdemo.dtos;
 
-import jakarta.persistence.Column;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
+import lombok.*;
 
 public class BrandDto {
     private UUID id;
     private String name;
     private LocalDateTime created;
     private LocalDateTime modified;
-
     public BrandDto(){}
 
     public BrandDto(UUID id, String name, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.name = name;
         this.created = created;
+        this.modified = modified;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
 
@@ -34,21 +48,5 @@ public class BrandDto {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
     }
 }
