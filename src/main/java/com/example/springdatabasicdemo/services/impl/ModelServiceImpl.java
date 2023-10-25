@@ -8,7 +8,6 @@ import com.example.springdatabasicdemo.repositories.BrandRepository;
 import com.example.springdatabasicdemo.repositories.ModelRepository;
 import com.example.springdatabasicdemo.services.ModelService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,12 +19,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class ModelServiceImpl  implements ModelService<UUID> {
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private ModelRepository modelRepository;
-    @Autowired
-    private BrandRepository brandRepository;
+    private final ModelMapper modelMapper;
+    private final ModelRepository modelRepository;
+    private final BrandRepository brandRepository;
+
+    public ModelServiceImpl(ModelMapper modelMapper, ModelRepository modelRepository, BrandRepository brandRepository) {
+        this.modelMapper = modelMapper;
+        this.modelRepository = modelRepository;
+        this.brandRepository = brandRepository;
+    }
 
 
     @Override

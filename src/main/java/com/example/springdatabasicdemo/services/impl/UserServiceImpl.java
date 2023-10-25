@@ -1,17 +1,13 @@
 package com.example.springdatabasicdemo.services.impl;
 
-import com.example.springdatabasicdemo.dtos.ModelDto;
 import com.example.springdatabasicdemo.dtos.UserDto;
 import com.example.springdatabasicdemo.dtos.UserRoleDto;
-import com.example.springdatabasicdemo.models.Brand;
-import com.example.springdatabasicdemo.models.Model;
 import com.example.springdatabasicdemo.models.User;
 import com.example.springdatabasicdemo.models.UserRole;
 import com.example.springdatabasicdemo.repositories.UserRepository;
 import com.example.springdatabasicdemo.repositories.UserRoleRepository;
 import com.example.springdatabasicdemo.services.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,12 +19,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService<UUID> {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private UserRoleRepository userRoleRepository;
-    @Autowired
-    private ModelMapper modelMapper;
+    private final UserRepository userRepository;
+    private final UserRoleRepository userRoleRepository;
+    private final ModelMapper modelMapper;
+
+    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, ModelMapper modelMapper) {
+        this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public void delete(UserDto user) {

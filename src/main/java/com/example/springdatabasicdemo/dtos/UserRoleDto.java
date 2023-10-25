@@ -1,16 +1,16 @@
 package com.example.springdatabasicdemo.dtos;
 
-import com.example.springdatabasicdemo.models.enums.Role;
+import com.example.springdatabasicdemo.models.UserRole;
 
 import java.util.UUID;
 
 public class UserRoleDto {
     private UUID id;
-    private Role role;
+    private UserRole.Role role;
 
     public UserRoleDto(){}
 
-    public UserRoleDto(UUID id, Role role) {
+    public UserRoleDto(UUID id, UserRole.Role role) {
         this.id = id;
         this.role = role;
     }
@@ -23,11 +23,11 @@ public class UserRoleDto {
         this.id = id;
     }
 
-    public Role getRole() {
+    public UserRole.Role getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(UserRole.Role role) {
         this.role = role;
     }
 }

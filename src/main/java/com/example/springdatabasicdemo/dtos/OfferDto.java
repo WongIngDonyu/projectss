@@ -1,7 +1,6 @@
 package com.example.springdatabasicdemo.dtos;
 
-import com.example.springdatabasicdemo.models.enums.Engine;
-import com.example.springdatabasicdemo.models.enums.Transmission;
+import com.example.springdatabasicdemo.models.Offer;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -9,17 +8,17 @@ import java.util.UUID;
 public class OfferDto {
     private UUID id;
     private String description;
-    private Engine engine;
+    private Offer.Engine engine;
     private String imageUrl;
     private int mileage;
     private int price;
-    private Transmission transmission;
+    private Offer.Transmission transmission;
     private int year;
     private LocalDateTime created;
     private LocalDateTime modified;
     public OfferDto(){}
 
-    public OfferDto(UUID id, String description, Engine engine, String imageUrl, int mileage, int price, Transmission transmission, int year, LocalDateTime created, LocalDateTime modified) {
+    public OfferDto(UUID id, String description, Offer.Engine engine, String imageUrl, int mileage, int price, Offer.Transmission transmission, int year, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.description = description;
         this.engine = engine;
@@ -48,11 +47,11 @@ public class OfferDto {
         this.description = description;
     }
 
-    public Engine getEngine() {
+    public Offer.Engine getEngine() {
         return engine;
     }
 
-    public void setEngine(Engine engine) {
+    public void setEngine(Offer.Engine engine) {
         this.engine = engine;
     }
 
@@ -80,11 +79,11 @@ public class OfferDto {
         this.price = price;
     }
 
-    public Transmission getTransmission() {
+    public Offer.Transmission getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(Transmission transmission) {
+    public void setTransmission(Offer.Transmission transmission) {
         this.transmission = transmission;
     }
 

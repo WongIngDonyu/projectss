@@ -1,6 +1,6 @@
 package com.example.springdatabasicdemo.dtos;
 
-import com.example.springdatabasicdemo.models.enums.Category;
+import com.example.springdatabasicdemo.models.Model;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -8,7 +8,7 @@ import java.util.UUID;
 public class ModelDto {
     private UUID id;
     private String name;
-    private Category category;
+    private Model.Category category;
     private String imageUrl;
     private int startYear;
     private int endYear;
@@ -16,7 +16,7 @@ public class ModelDto {
     private LocalDateTime modified;
     public ModelDto(){}
 
-    public ModelDto(UUID id, String name, Category category, String imageUrl, int startYear, int endYear,  LocalDateTime created, LocalDateTime modified) {
+    public ModelDto(UUID id, String name, Model.Category category, String imageUrl, int startYear, int endYear, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -43,11 +43,11 @@ public class ModelDto {
         this.name = name;
     }
 
-    public Category getCategory() {
+    public Model.Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(Model.Category category) {
         this.category = category;
     }
 

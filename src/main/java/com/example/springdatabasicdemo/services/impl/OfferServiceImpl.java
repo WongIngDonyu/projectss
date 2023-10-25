@@ -9,7 +9,6 @@ import com.example.springdatabasicdemo.repositories.OfferRepository;
 import com.example.springdatabasicdemo.repositories.UserRepository;
 import com.example.springdatabasicdemo.services.OfferService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,14 +20,18 @@ import java.util.stream.Collectors;
 
 @Service
 public class OfferServiceImpl implements OfferService<UUID> {
-    @Autowired
-    private OfferRepository offerRepository;
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private ModelRepository modelRepository;
-    @Autowired
-    private UserRepository userRepository;
+    private final OfferRepository offerRepository;
+    private final ModelMapper modelMapper;
+    private final ModelRepository modelRepository;
+    private final UserRepository userRepository;
+
+    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper, ModelRepository modelRepository, UserRepository userRepository) {
+        this.offerRepository = offerRepository;
+        this.modelMapper = modelMapper;
+        this.modelRepository = modelRepository;
+        this.userRepository = userRepository;
+    }
+
     @Override
     public void delete(OfferDto offer) {
         offerRepository.deleteById(offer.getId());

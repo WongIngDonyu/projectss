@@ -100,4 +100,5 @@ public class User extends BaseEntity{
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
     }
+
 }

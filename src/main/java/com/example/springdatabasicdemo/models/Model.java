@@ -1,6 +1,6 @@
 package com.example.springdatabasicdemo.models;
 
-import com.example.springdatabasicdemo.models.enums.Category;
+import com.example.springdatabasicdemo.models.converters.CategoryConverter;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -10,6 +10,8 @@ import java.util.List;
 public class Model extends BaseEntity{
     @Column(name = "modelName")
     private String name;
+
+    @Convert(converter = CategoryConverter.class)
     @Column(name = "category")
     private Category category;
     @Column(name = "imageUrl")
@@ -89,5 +91,16 @@ public class Model extends BaseEntity{
 
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
+    }
+    public enum Category {
+        Car(1), Buss(2), Truck(3), Motorcycle(10);
+
+        int number;
+        Category(int number) {
+            this.number=number;
+        }
+        public int getNumber(){
+            return number;
+        }
     }
 }

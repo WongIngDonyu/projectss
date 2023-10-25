@@ -2,8 +2,6 @@ package com.example.springdatabasicdemo.dtos;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-import lombok.*;
-
 public class BrandDto {
     private UUID id;
     private String name;

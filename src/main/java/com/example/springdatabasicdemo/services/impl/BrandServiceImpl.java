@@ -5,7 +5,6 @@ import com.example.springdatabasicdemo.models.Brand;
 import com.example.springdatabasicdemo.repositories.BrandRepository;
 import com.example.springdatabasicdemo.services.BrandService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,10 +16,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class BrandServiceImpl implements BrandService<UUID> {
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private BrandRepository brandRepository;
+    private final ModelMapper modelMapper;
+    private final BrandRepository brandRepository;
+
+    public BrandServiceImpl(ModelMapper modelMapper, BrandRepository brandRepository) {
+        this.modelMapper = modelMapper;
+        this.brandRepository = brandRepository;
+    }
 
     @Override
     public void delete(BrandDto brand) {

@@ -1,7 +1,7 @@
 package com.example.springdatabasicdemo.models;
 
-import com.example.springdatabasicdemo.models.enums.Engine;
-import com.example.springdatabasicdemo.models.enums.Transmission;
+import com.example.springdatabasicdemo.models.converters.EngineConverter;
+import com.example.springdatabasicdemo.models.converters.TransmissionConverter;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 public class Offer extends BaseEntity{
     @Column(name = "description")
     private String description;
+    @Convert(converter = EngineConverter.class)
     @Column(name = "engine")
     private Engine engine;
     @Column(name = "imageUrl")
@@ -17,6 +18,7 @@ public class Offer extends BaseEntity{
     private int mileage;
     @Column(name = "price")
     private int price;
+    @Convert(converter = TransmissionConverter.class)
     @Column(name = "transmission")
     private Transmission transmission;
     @Column(name = "year")
@@ -112,4 +114,25 @@ public class Offer extends BaseEntity{
     public void setUser(User user) {
         this.user = user;
     }
+    public enum Engine {
+        GASOLINE(1), DIESEL(2), ELECTRIC(3), HYBRID(10);
+        private int number;
+        Engine(int number) {
+            this.number=number;
+        }
+        public int getNumber(){
+            return number;
+        }
+    }
+    public enum Transmission {
+        MANUAL(1), AUTOMATIC(10);
+        private int number;
+        Transmission(int number) {
+            this.number=number;
+        }
+        public int getNumber(){
+            return number;
+        }
+    }
+
 }

@@ -1,6 +1,6 @@
 package com.example.springdatabasicdemo.models;
 
-import com.example.springdatabasicdemo.models.enums.Role;
+import com.example.springdatabasicdemo.models.converters.RoleConverter;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,6 +13,7 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
+    @Convert(converter = RoleConverter.class)
     @Column(name = "role")
     private Role role;
     @OneToMany(mappedBy = "userRole",cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
@@ -47,5 +48,15 @@ public class UserRole {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+    public enum Role {
+        User(1), Admin(10);
+        private int number;
+        Role(int number) {
+            this.number=number;
+        }
+        public int getNumber(){
+            return number;
+        }
     }
 }

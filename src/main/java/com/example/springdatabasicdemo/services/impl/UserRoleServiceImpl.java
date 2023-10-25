@@ -1,16 +1,12 @@
 package com.example.springdatabasicdemo.services.impl;
 
-import com.example.springdatabasicdemo.dtos.BrandDto;
 import com.example.springdatabasicdemo.dtos.UserRoleDto;
-import com.example.springdatabasicdemo.models.Brand;
 import com.example.springdatabasicdemo.models.UserRole;
 import com.example.springdatabasicdemo.repositories.UserRoleRepository;
 import com.example.springdatabasicdemo.services.UserRoleService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -19,10 +15,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserRoleServiceImpl implements UserRoleService<UUID> {
-    @Autowired
-    private UserRoleRepository userRoleRepository;
-    @Autowired
-    private ModelMapper modelMapper;
+    private final UserRoleRepository userRoleRepository;
+    private final ModelMapper modelMapper;
+
+    public UserRoleServiceImpl(UserRoleRepository userRoleRepository, ModelMapper modelMapper) {
+        this.userRoleRepository = userRoleRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public void delete(UserRoleDto userRole) {
