@@ -59,9 +59,9 @@ public class BrandServiceImpl implements BrandService<UUID> {
         }
         else {
             Brand brand1 = modelMapper.map(brandDto, Brand.class);
+            brand1.setCreated(dbBrand.get().getCreated());
             brand1.setModified(LocalDateTime.now());
             return modelMapper.map(brandRepository.save(brand1), BrandDto.class);
         }
     }
-
 }

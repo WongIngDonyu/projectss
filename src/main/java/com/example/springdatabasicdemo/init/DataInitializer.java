@@ -38,11 +38,11 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void seedData() throws IOException {
-        BrandDto b1 = new BrandDto(UUID.randomUUID(),"Zoo",null, null);
+        BrandDto b1 = new BrandDto(UUID.randomUUID(),"Zoo");
         BrandDto sb1 = brandService.add(b1);
         sb1.setName("LOX");
         brandService.update(sb1);
-        ModelDto m1 = new ModelDto(UUID.randomUUID(),"Zoo1", Model.Category.Motorcycle, "SomeUrl", 2023, 2054,null, null);
+        ModelDto m1 = new ModelDto(UUID.randomUUID(),"Zoo1", Model.Category.Motorcycle, "SomeUrl", 2023, 2054);
         ModelDto modelDto = modelService.add(m1, sb1);
         modelDto.setName("alallala");
         modelService.update(modelDto);
@@ -50,11 +50,11 @@ public class DataInitializer implements CommandLineRunner {
         UserRoleDto userRoleDto1 = userRoleService.add(userRoleDto);
         userRoleDto1.setRole(UserRole.Role.Admin);
         userRoleService.update(userRoleDto1);
-        UserDto userDto = new UserDto(UUID.randomUUID(), "azazLO","1488","Egor", "Ananasiy", true, "someUrl",null, null);
+        UserDto userDto = new UserDto(UUID.randomUUID(), "azazLO","1488","Egor", "Ananasiy", true, "someUrl");
         UserDto userDro1 = userService.add(userDto, userRoleDto1);
         userDro1.setActive(false);
         userService.update(userDro1);
-        OfferDto offerDto = new OfferDto(UUID.randomUUID(),"somekool", Offer.Engine.DIESEL, "someUrl", 100, 100000, Offer.Transmission.AUTOMATIC, 2003, null, null);
+        OfferDto offerDto = new OfferDto(UUID.randomUUID(),"somekool", Offer.Engine.DIESEL, "someUrl", 100, 100000, Offer.Transmission.AUTOMATIC, 2003);
         OfferDto offerDto1 = offerService.add(offerDto, modelDto, userDro1);
         offerDto1.setPrice(10);
         offerService.update(offerDto1);

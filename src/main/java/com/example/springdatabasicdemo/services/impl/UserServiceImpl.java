@@ -72,6 +72,7 @@ public class UserServiceImpl implements UserService<UUID> {
             User user1 = dbUser.get();
             modelMapper.map(userDto, user1);
             user1.setModified(LocalDateTime.now());
+            user1.setCreated(dbUser.get().getCreated());
             return modelMapper.map(userRepository.save(user1), UserDto.class);
         }
     }

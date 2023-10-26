@@ -11,11 +11,9 @@ public class UserDto {
     private String lastName;
     private boolean isActive;
     private String imageUrl;
-    private LocalDateTime created;
-    private LocalDateTime modified;
     public UserDto(){}
 
-    public UserDto(UUID id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl,  LocalDateTime created, LocalDateTime modified) {
+    public UserDto(UUID id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -23,8 +21,7 @@ public class UserDto {
         this.lastName = lastName;
         this.isActive = isActive;
         this.imageUrl = imageUrl;
-        this.created = created;
-        this.modified = modified;
+
     }
 
     public UUID getId() {
@@ -83,20 +80,4 @@ public class UserDto {
         this.imageUrl = imageUrl;
     }
 
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
-    }
 }

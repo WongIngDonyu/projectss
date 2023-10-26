@@ -75,6 +75,7 @@ public class ModelServiceImpl  implements ModelService<UUID> {
             Model model = dbModel.get();
             modelMapper.map(modelDto, model);
             model.setModified(LocalDateTime.now());
+            model.setCreated(dbModel.get().getCreated());
             return modelMapper.map(modelRepository.save(model), ModelDto.class);
         }
     }

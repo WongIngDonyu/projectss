@@ -1,7 +1,5 @@
 package com.example.springdatabasicdemo.models;
 
-import com.example.springdatabasicdemo.models.converters.EngineConverter;
-import com.example.springdatabasicdemo.models.converters.TransmissionConverter;
 import jakarta.persistence.*;
 
 @Entity

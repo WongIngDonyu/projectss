@@ -5,32 +5,16 @@ import java.util.UUID;
 public class BrandDto {
     private UUID id;
     private String name;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+
     public BrandDto(){}
 
-    public BrandDto(UUID id, String name, LocalDateTime created, LocalDateTime modified) {
+    public BrandDto(UUID id, String name) {
         this.id = id;
         this.name = name;
-        this.created = created;
-        this.modified = modified;
+
     }
 
-    public LocalDateTime getCreated() {
-        return created;
-    }
 
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
-    }
 
     public UUID getId() {
         return id;

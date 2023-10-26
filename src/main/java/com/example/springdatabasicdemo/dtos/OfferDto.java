@@ -14,11 +14,10 @@ public class OfferDto {
     private int price;
     private Offer.Transmission transmission;
     private int year;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+
     public OfferDto(){}
 
-    public OfferDto(UUID id, String description, Offer.Engine engine, String imageUrl, int mileage, int price, Offer.Transmission transmission, int year, LocalDateTime created, LocalDateTime modified) {
+    public OfferDto(UUID id, String description, Offer.Engine engine, String imageUrl, int mileage, int price, Offer.Transmission transmission, int year) {
         this.id = id;
         this.description = description;
         this.engine = engine;
@@ -27,8 +26,6 @@ public class OfferDto {
         this.price = price;
         this.transmission = transmission;
         this.year = year;
-        this.created = created;
-        this.modified = modified;
     }
 
     public UUID getId() {
@@ -95,19 +92,4 @@ public class OfferDto {
         this.year = year;
     }
 
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
-    }
 }

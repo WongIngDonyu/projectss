@@ -83,6 +83,7 @@ public class OfferServiceImpl implements OfferService<UUID> {
             Offer offer = dbOffer.get();
             modelMapper.map(offerDto, offer);
             offer.setModified(LocalDateTime.now());
+            offer.setCreated(dbOffer.get().getCreated());
             return modelMapper.map(offerRepository.save(offer), OfferDto.class);
         }
     }

@@ -1,6 +1,5 @@
 package com.example.springdatabasicdemo.models;
 
-import com.example.springdatabasicdemo.models.converters.RoleConverter;
 import jakarta.persistence.*;
 
 import java.util.List;
