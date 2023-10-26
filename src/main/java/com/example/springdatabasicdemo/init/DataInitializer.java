@@ -32,7 +32,6 @@ public class DataInitializer implements CommandLineRunner {
         this.offerService = offerService;
     }
 
-
     @Override
     public void run(String... args) throws Exception {
         seedData();
