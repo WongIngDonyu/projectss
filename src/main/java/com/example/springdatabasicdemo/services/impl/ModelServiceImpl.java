@@ -1,7 +1,7 @@
 package com.example.springdatabasicdemo.services.impl;
 
-import com.example.springdatabasicdemo.dtos.BrandDto;
-import com.example.springdatabasicdemo.dtos.ModelDto;
+import com.example.springdatabasicdemo.services.dtos.BrandDto;
+import com.example.springdatabasicdemo.services.dtos.ModelDto;
 import com.example.springdatabasicdemo.models.Brand;
 import com.example.springdatabasicdemo.models.Model;
 import com.example.springdatabasicdemo.repositories.BrandRepository;

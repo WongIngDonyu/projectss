@@ -7,22 +7,14 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity{
-    @Column(name = "username", unique = true)
     private String username;
-    @Column(name = "password")
     private String password;
-    @Column(name = "firstName")
     private String firstName;
-    @Column(name = "lastName")
     private String lastName;
-    @Column(name = "isActive")
     private boolean isActive;
-    @Column(name = "imageUrl")
     private String imageUrl;
-    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
     private UserRole userRole;
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+
     private List<Offer> offers;
     public User(){}
 
@@ -36,7 +28,7 @@ public class User extends BaseEntity{
         this.userRole = userRole;
         this.offers = offers;
     }
-
+    @Column(name = "username", unique = true)
     public String getUsername() {
         return username;
     }
@@ -44,7 +36,7 @@ public class User extends BaseEntity{
     public void setUsername(String username) {
         this.username = username;
     }
-
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -52,7 +44,7 @@ public class User extends BaseEntity{
     public void setPassword(String password) {
         this.password = password;
     }
-
+    @Column(name = "firstName")
     public String getFirstName() {
         return firstName;
     }
@@ -60,7 +52,7 @@ public class User extends BaseEntity{
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
+    @Column(name = "lastName")
     public String getLastName() {
         return lastName;
     }
@@ -68,7 +60,7 @@ public class User extends BaseEntity{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+    @Column(name = "isActive")
     public boolean isActive() {
         return isActive;
     }
@@ -76,7 +68,7 @@ public class User extends BaseEntity{
     public void setActive(boolean active) {
         isActive = active;
     }
-
+    @Column(name = "imageUrl")
     public String getImageUrl() {
         return imageUrl;
     }
@@ -84,7 +76,8 @@ public class User extends BaseEntity{
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     public UserRole getUserRole() {
         return userRole;
     }
@@ -92,7 +85,7 @@ public class User extends BaseEntity{
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
-
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     public List<Offer> getOffers() {
         return offers;
     }

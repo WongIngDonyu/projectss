@@ -1,8 +1,7 @@
-package com.example.springdatabasicdemo.dtos;
+package com.example.springdatabasicdemo.services.dtos;
 
 import com.example.springdatabasicdemo.models.Offer;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class OfferDto {

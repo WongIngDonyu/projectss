@@ -7,9 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "brands")
 public class Brand extends BaseEntity{
-    @Column(name = "brandName")
     private String name;
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Model> models;
 
     public Brand(){}
@@ -18,7 +16,7 @@ public class Brand extends BaseEntity{
         this.name = name;
         this.models = models;
     }
-
+    @Column(name = "brandName")
     public String getName() {
         return name;
     }
@@ -26,7 +24,7 @@ public class Brand extends BaseEntity{
     public void setName(String name) {
         this.name = name;
     }
-
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     public List<Model> getModels() {
         return models;
     }

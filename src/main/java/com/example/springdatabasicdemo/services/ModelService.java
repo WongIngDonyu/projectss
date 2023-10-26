@@ -1,7 +1,7 @@
 package com.example.springdatabasicdemo.services;
 
-import com.example.springdatabasicdemo.dtos.BrandDto;
-import com.example.springdatabasicdemo.dtos.ModelDto;
+import com.example.springdatabasicdemo.services.dtos.BrandDto;
+import com.example.springdatabasicdemo.services.dtos.ModelDto;
 
 import java.util.List;
 import java.util.Optional;

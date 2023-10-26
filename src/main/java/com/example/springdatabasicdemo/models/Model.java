@@ -7,20 +7,12 @@ import java.util.List;
 @Entity
 @Table(name = "models")
 public class Model extends BaseEntity{
-    @Column(name = "modelName")
     private String name;
-    @Column(name = "category")
     private Category category;
-    @Column(name = "imageUrl")
     private String imageUrl;
-    @Column(name = "startYear")
     private int startYear;
-    @Column(name = "endYear")
     private int endYear;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "brand_id")
     private Brand brand;
-    @OneToMany(mappedBy = "model", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Offer> offers;
     public Model(){}
 
@@ -33,7 +25,7 @@ public class Model extends BaseEntity{
         this.brand = brand;
         this.offers = offers;
     }
-
+    @Column(name = "modelName")
     public String getName() {
         return name;
     }
@@ -41,7 +33,7 @@ public class Model extends BaseEntity{
     public void setName(String name) {
         this.name = name;
     }
-
+    @Column(name = "category")
     public Category getCategory() {
         return category;
     }
@@ -49,7 +41,7 @@ public class Model extends BaseEntity{
     public void setCategory(Category category) {
         this.category = category;
     }
-
+    @Column(name = "imageUrl")
     public String getImageUrl() {
         return imageUrl;
     }
@@ -57,7 +49,7 @@ public class Model extends BaseEntity{
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
+    @Column(name = "startYear")
     public int getStartYear() {
         return startYear;
     }
@@ -65,7 +57,7 @@ public class Model extends BaseEntity{
     public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
-
+    @Column(name = "endYear")
     public int getEndYear() {
         return endYear;
     }
@@ -73,7 +65,8 @@ public class Model extends BaseEntity{
     public void setEndYear(int endYear) {
         this.endYear = endYear;
     }
-
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
     public Brand getBrand() {
         return brand;
     }
@@ -81,7 +74,7 @@ public class Model extends BaseEntity{
     public void setBrand(Brand brand) {
         this.brand = brand;
     }
-
+    @OneToMany(mappedBy = "model", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     public List<Offer> getOffers() {
         return offers;
     }

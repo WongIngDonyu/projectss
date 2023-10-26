@@ -7,15 +7,12 @@ import java.util.UUID;
 
 @MappedSuperclass
 public abstract class BaseEntity {
+    protected UUID id;
+    protected LocalDateTime created;
+    protected LocalDateTime modified;
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = true)
-    protected UUID id;
-    @Column(name = "created")
-    protected LocalDateTime created;
-    @Column(name = "modified")
-    protected LocalDateTime modified;
-
     public UUID getId() {
         return id;
     }
@@ -23,7 +20,7 @@ public abstract class BaseEntity {
     public void setId(UUID id) {
         this.id = id;
     }
-
+    @Column(name = "created")
     public LocalDateTime getCreated() {
         return created;
     }
@@ -31,7 +28,7 @@ public abstract class BaseEntity {
     public void setCreated(LocalDateTime created) {
         this.created = created;
     }
-
+    @Column(name = "modified")
     public LocalDateTime getModified() {
         return modified;
     }

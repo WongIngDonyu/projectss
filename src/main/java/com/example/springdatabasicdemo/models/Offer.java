@@ -5,25 +5,14 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "offers")
 public class Offer extends BaseEntity{
-    @Column(name = "description")
     private String description;
-    @Column(name = "engine")
     private Engine engine;
-    @Column(name = "imageUrl")
     private String imageUrl;
-    @Column(name = "mileage")
     private int mileage;
-    @Column(name = "price")
     private int price;
-    @Column(name = "transmission")
     private Transmission transmission;
-    @Column(name = "year")
     private int year;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "model_id")
     private Model model;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id")
     private User user;
 
     public Offer(){}
@@ -38,7 +27,7 @@ public class Offer extends BaseEntity{
         this.model = model;
         this.user = user;
     }
-
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -46,7 +35,7 @@ public class Offer extends BaseEntity{
     public void setDescription(String description) {
         this.description = description;
     }
-
+    @Column(name = "engine")
     public Engine getEngine() {
         return engine;
     }
@@ -54,7 +43,7 @@ public class Offer extends BaseEntity{
     public void setEngine(Engine engine) {
         this.engine = engine;
     }
-
+    @Column(name = "imageUrl")
     public String getImageUrl() {
         return imageUrl;
     }
@@ -62,7 +51,7 @@ public class Offer extends BaseEntity{
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
+    @Column(name = "mileage")
     public int getMileage() {
         return mileage;
     }
@@ -70,7 +59,7 @@ public class Offer extends BaseEntity{
     public void setMileage(int mileage) {
         this.mileage = mileage;
     }
-
+    @Column(name = "price")
     public int getPrice() {
         return price;
     }
@@ -78,7 +67,7 @@ public class Offer extends BaseEntity{
     public void setPrice(int price) {
         this.price = price;
     }
-
+    @Column(name = "transmission")
     public Transmission getTransmission() {
         return transmission;
     }
@@ -86,7 +75,7 @@ public class Offer extends BaseEntity{
     public void setTransmission(Transmission transmission) {
         this.transmission = transmission;
     }
-
+    @Column(name = "year")
     public int getYear() {
         return year;
     }
@@ -94,7 +83,8 @@ public class Offer extends BaseEntity{
     public void setYear(int year) {
         this.year = year;
     }
-
+    @ManyToOne
+    @JoinColumn(name = "model_id")
     public Model getModel() {
         return model;
     }
@@ -102,7 +92,8 @@ public class Offer extends BaseEntity{
     public void setModel(Model model) {
         this.model = model;
     }
-
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
     public User getUser() {
         return user;
     }

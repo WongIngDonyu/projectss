@@ -7,14 +7,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "roles")
-public class UserRole {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
-    private UUID id;
-    @Column(name = "role")
+public class UserRole extends BaseEntity{
     private Role role;
-    @OneToMany(mappedBy = "userRole",cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<User> users;
     public UserRole(){}
 
@@ -23,15 +17,7 @@ public class UserRole {
         this.role = role;
         this.users = users;
     }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
+    @Column(name = "role")
     public Role getRole() {
         return role;
     }
@@ -40,6 +26,7 @@ public class UserRole {
         this.role = role;
     }
 
+    @OneToMany(mappedBy = "userRole", fetch = FetchType.LAZY)
     public List<User> getUsers() {
         return users;
     }

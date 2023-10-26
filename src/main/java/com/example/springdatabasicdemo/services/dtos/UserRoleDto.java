@@ -1,4 +1,4 @@
-package com.example.springdatabasicdemo.dtos;
+package com.example.springdatabasicdemo.services.dtos;
 
 import com.example.springdatabasicdemo.models.UserRole;
 

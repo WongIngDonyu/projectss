@@ -1,8 +1,8 @@
 package com.example.springdatabasicdemo.services;
 
-import com.example.springdatabasicdemo.dtos.ModelDto;
-import com.example.springdatabasicdemo.dtos.OfferDto;
-import com.example.springdatabasicdemo.dtos.UserDto;
+import com.example.springdatabasicdemo.services.dtos.ModelDto;
+import com.example.springdatabasicdemo.services.dtos.OfferDto;
+import com.example.springdatabasicdemo.services.dtos.UserDto;
 
 import java.util.List;
 import java.util.Optional;

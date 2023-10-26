@@ -1,6 +1,6 @@
 package com.example.springdatabasicdemo.services;
 
-import com.example.springdatabasicdemo.dtos.UserRoleDto;
+import com.example.springdatabasicdemo.services.dtos.UserRoleDto;
 
 import java.util.List;
 import java.util.Optional;
