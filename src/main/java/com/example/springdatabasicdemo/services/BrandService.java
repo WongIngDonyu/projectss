@@ -1,5 +1,6 @@
 package com.example.springdatabasicdemo.services;
 
+import com.example.springdatabasicdemo.models.Brand;
 import com.example.springdatabasicdemo.services.dtos.BrandDto;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface BrandService <I extends UUID>{
 
     BrandDto add(BrandDto brand);
     BrandDto update(BrandDto brand);
+    Brand findBrandByName(String brandName);
 }

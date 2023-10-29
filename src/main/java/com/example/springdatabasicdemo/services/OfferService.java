@@ -17,6 +17,6 @@ public interface OfferService <I extends UUID>{
 
     Optional<OfferDto> findOffer(UUID id);
 
-    OfferDto add(OfferDto offer, ModelDto modelDto, UserDto userDto);
+    OfferDto add(OfferDto offer);
     OfferDto update(OfferDto offerDto);
 }

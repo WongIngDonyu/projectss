@@ -1,5 +1,6 @@
 package com.example.springdatabasicdemo.services;
 
+import com.example.springdatabasicdemo.models.UserRole;
 import com.example.springdatabasicdemo.services.dtos.UserRoleDto;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface UserRoleService <I extends UUID>{
 
     UserRoleDto add(UserRoleDto userRole);
     UserRoleDto update(UserRoleDto userRole);
+    UserRole findRoleByName(UserRole.Role name);
 }

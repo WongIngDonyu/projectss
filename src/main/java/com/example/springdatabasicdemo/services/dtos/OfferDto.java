@@ -13,10 +13,12 @@ public class OfferDto {
     private int price;
     private Offer.Transmission transmission;
     private int year;
+    private String username;
+    private String modelName;
 
     public OfferDto(){}
 
-    public OfferDto(UUID id, String description, Offer.Engine engine, String imageUrl, int mileage, int price, Offer.Transmission transmission, int year) {
+    public OfferDto(UUID id, String description, Offer.Engine engine, String imageUrl, int mileage, int price, Offer.Transmission transmission, int year, String username, String modelName) {
         this.id = id;
         this.description = description;
         this.engine = engine;
@@ -25,6 +27,8 @@ public class OfferDto {
         this.price = price;
         this.transmission = transmission;
         this.year = year;
+        this.username = username;
+        this.modelName = modelName;
     }
 
     public UUID getId() {
@@ -91,4 +95,19 @@ public class OfferDto {
         this.year = year;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
 }

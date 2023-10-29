@@ -1,5 +1,7 @@
 package com.example.springdatabasicdemo.services.dtos;
 
+import com.example.springdatabasicdemo.models.UserRole;
+
 import java.util.UUID;
 
 public class UserDto {
@@ -10,9 +12,10 @@ public class UserDto {
     private String lastName;
     private boolean isActive;
     private String imageUrl;
+    private UserRole.Role role;
     public UserDto(){}
 
-    public UserDto(UUID id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl) {
+    public UserDto(UUID id, String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRole.Role role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -20,7 +23,7 @@ public class UserDto {
         this.lastName = lastName;
         this.isActive = isActive;
         this.imageUrl = imageUrl;
-
+        this.role = role;
     }
 
     public UUID getId() {
@@ -79,4 +82,11 @@ public class UserDto {
         this.imageUrl = imageUrl;
     }
 
+    public UserRole.Role getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole.Role role) {
+        this.role = role;
+    }
 }

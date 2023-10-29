@@ -1,6 +1,5 @@
 package com.example.springdatabasicdemo.services.impl;
 
-import com.example.springdatabasicdemo.services.dtos.BrandDto;
 import com.example.springdatabasicdemo.services.dtos.ModelDto;
 import com.example.springdatabasicdemo.models.Brand;
 import com.example.springdatabasicdemo.models.Model;
@@ -22,11 +21,13 @@ public class ModelServiceImpl  implements ModelService<UUID> {
     private final ModelMapper modelMapper;
     private final ModelRepository modelRepository;
     private final BrandRepository brandRepository;
+    private final BrandServiceImpl brandService;
 
-    public ModelServiceImpl(ModelMapper modelMapper, ModelRepository modelRepository, BrandRepository brandRepository) {
+    public ModelServiceImpl(ModelMapper modelMapper, ModelRepository modelRepository, BrandRepository brandRepository, BrandServiceImpl brandService) {
         this.modelMapper = modelMapper;
         this.modelRepository = modelRepository;
         this.brandRepository = brandRepository;
+        this.brandService = brandService;
     }
 
 
@@ -51,18 +52,10 @@ public class ModelServiceImpl  implements ModelService<UUID> {
     }
 
     @Override
-    public ModelDto add(ModelDto model, BrandDto brandDto) {
+    public ModelDto add(ModelDto model) {
         Model m = modelMapper.map(model, Model.class);
-        Brand b = brandRepository.findById(brandDto.getId()).orElse(null);
-        if (b != null) {
-            m.setBrand(b);
-        }
-        else {
-            throw new NoSuchElementException("Brand not found");
-        }
+        m.setBrand(brandService.findBrandByName(model.getBrand()));
         m.setCreated(LocalDateTime.now());
-
-
         return modelMapper.map(modelRepository.save(m), ModelDto.class);
     }
 
@@ -71,13 +64,22 @@ public class ModelServiceImpl  implements ModelService<UUID> {
         Optional<Model> dbModel = modelRepository.findById(modelDto.getId());
         if (dbModel.isEmpty()) {
             throw new NoSuchElementException("Model not found");
-        } else {
+        }
             Model model = dbModel.get();
             modelMapper.map(modelDto, model);
+            Optional<Brand> dbBrand = brandRepository.findByName(modelDto.getBrand());
+            if (dbBrand.isEmpty()){
+                throw new NoSuchElementException("Brand not found");
+            }
+            model.setBrand(brandService.findBrandByName(modelDto.getBrand()));
             model.setModified(LocalDateTime.now());
             model.setCreated(dbModel.get().getCreated());
             return modelMapper.map(modelRepository.save(model), ModelDto.class);
         }
-    }
 
+    @Override
+    public Model findByName(String name) {
+        return modelRepository.findByName(name).orElse(null);
+    }
 }
+

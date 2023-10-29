@@ -1,5 +1,6 @@
 package com.example.springdatabasicdemo.services.impl;
 
+import com.example.springdatabasicdemo.services.UserRoleService;
 import com.example.springdatabasicdemo.services.dtos.UserDto;
 import com.example.springdatabasicdemo.services.dtos.UserRoleDto;
 import com.example.springdatabasicdemo.models.User;
@@ -22,11 +23,12 @@ public class UserServiceImpl implements UserService<UUID> {
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
     private final ModelMapper modelMapper;
-
-    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, ModelMapper modelMapper) {
+    private final UserRoleService userRoleService;
+    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, ModelMapper modelMapper, UserRoleService userRoleService) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.modelMapper = modelMapper;
+        this.userRoleService = userRoleService;
     }
 
     @Override
@@ -50,15 +52,9 @@ public class UserServiceImpl implements UserService<UUID> {
     }
 
     @Override
-    public UserDto add(UserDto user, UserRoleDto userRoleDto) {
+    public UserDto add(UserDto user) {
         User u = modelMapper.map(user, User.class);
-        UserRole userRole = userRoleRepository.findById(userRoleDto.getId()).orElse(null);
-        if (userRole != null) {
-            u.setUserRole(userRole);
-        }
-        else {
-            throw new NoSuchElementException("UserRole not found");
-        }
+        u.setUserRole(userRoleService.findRoleByName(user.getRole()));
         u.setCreated(LocalDateTime.now());
         return modelMapper.map(userRepository.save(u), UserDto.class);
     }
@@ -68,12 +64,19 @@ public class UserServiceImpl implements UserService<UUID> {
         Optional<User> dbUser = userRepository.findById(userDto.getId());
         if (dbUser.isEmpty()) {
             throw new NoSuchElementException("User not found");
-        } else {
+        }
             User user1 = dbUser.get();
-            modelMapper.map(userDto, user1);
+
+            user1.setUserRole(userRoleService.findRoleByName(userDto.getRole()));
             user1.setModified(LocalDateTime.now());
             user1.setCreated(dbUser.get().getCreated());
             return modelMapper.map(userRepository.save(user1), UserDto.class);
         }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username).orElse(null);
     }
+
 }
+

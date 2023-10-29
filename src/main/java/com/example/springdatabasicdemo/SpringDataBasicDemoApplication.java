@@ -1,5 +1,7 @@
 package com.example.springdatabasicdemo;
 
+import com.example.springdatabasicdemo.models.Offer;
+import com.example.springdatabasicdemo.services.dtos.OfferDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +17,8 @@ public class SpringDataBasicDemoApplication {
         modelMapper.getConfiguration()
                 .setFieldMatchingEnabled(true)
                 .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
+        modelMapper.createTypeMap(Offer.class, OfferDto.class)
+                .addMapping(src -> src.getUser().getUsername(), OfferDto::setUsername);
 
         return modelMapper;
     }

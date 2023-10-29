@@ -1,5 +1,6 @@
 package com.example.springdatabasicdemo.services;
 
+import com.example.springdatabasicdemo.models.User;
 import com.example.springdatabasicdemo.services.dtos.UserDto;
 import com.example.springdatabasicdemo.services.dtos.UserRoleDto;
 
@@ -16,6 +17,7 @@ public interface UserService <I extends UUID>{
 
     Optional<UserDto> findUser(UUID id);
 
-    UserDto add(UserDto user, UserRoleDto  userRoleDto);
+    UserDto add(UserDto user);
     UserDto update(UserDto user);
+    User findByUsername (String username);
 }

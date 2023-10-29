@@ -1,8 +1,8 @@
 package com.example.springdatabasicdemo.services.impl;
 
-import com.example.springdatabasicdemo.services.dtos.ModelDto;
+import com.example.springdatabasicdemo.services.ModelService;
+import com.example.springdatabasicdemo.services.UserService;
 import com.example.springdatabasicdemo.services.dtos.OfferDto;
-import com.example.springdatabasicdemo.services.dtos.UserDto;
 import com.example.springdatabasicdemo.models.*;
 import com.example.springdatabasicdemo.repositories.ModelRepository;
 import com.example.springdatabasicdemo.repositories.OfferRepository;
@@ -24,12 +24,16 @@ public class OfferServiceImpl implements OfferService<UUID> {
     private final ModelMapper modelMapper;
     private final ModelRepository modelRepository;
     private final UserRepository userRepository;
+    private final UserService userService;
+    private final ModelService modelService;
 
-    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper, ModelRepository modelRepository, UserRepository userRepository) {
+    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper, ModelRepository modelRepository, UserRepository userRepository, UserService userService, ModelService modelService) {
         this.offerRepository = offerRepository;
         this.modelMapper = modelMapper;
         this.modelRepository = modelRepository;
         this.userRepository = userRepository;
+        this.userService = userService;
+        this.modelService = modelService;
     }
 
     @Override
@@ -54,22 +58,10 @@ public class OfferServiceImpl implements OfferService<UUID> {
     }
 
     @Override
-    public OfferDto add(OfferDto offer, ModelDto modelDto, UserDto userDto) {
+    public OfferDto add(OfferDto offer) {
         Offer o = modelMapper.map(offer, Offer.class);
-        Model model = modelRepository.findById(modelDto.getId()).orElse(null);
-        if (model != null) {
-            o.setModel(model);
-        }
-        else {
-            throw new NoSuchElementException("Model not found");
-        }
-        User user = userRepository.findById(userDto.getId()).orElse(null);
-        if (user != null) {
-            o.setUser(user);
-        }
-        else {
-            throw new NoSuchElementException("User not found");
-        }
+        o.setUser(userService.findByUsername(offer.getUsername()));
+        o.setModel(modelService.findByName(offer.getModelName()));
         o.setCreated(LocalDateTime.now());
         return modelMapper.map(offerRepository.save(o), OfferDto.class);
     }
@@ -79,12 +71,22 @@ public class OfferServiceImpl implements OfferService<UUID> {
         Optional<Offer> dbOffer = offerRepository.findById(offerDto.getId());
         if (dbOffer.isEmpty()) {
             throw new NoSuchElementException("Offer not found");
-        } else {
+        }
             Offer offer = dbOffer.get();
             modelMapper.map(offerDto, offer);
+        Optional<User> dbUser = userRepository.findByUsername(offerDto.getUsername());
+        if (dbUser.isEmpty()){
+            throw new NoSuchElementException("User not found");
+        }
+        offer.setUser(userService.findByUsername(offerDto.getUsername()));
+        Optional<Model> dbModel = modelRepository.findByName(offerDto.getModelName());
+        if (dbModel.isEmpty()){
+            throw new NoSuchElementException("Model not found");
+        }
+        offer.setModel(modelService.findByName(offerDto.getModelName()));
             offer.setModified(LocalDateTime.now());
             offer.setCreated(dbOffer.get().getCreated());
             return modelMapper.map(offerRepository.save(offer), OfferDto.class);
-        }
+
     }
 }

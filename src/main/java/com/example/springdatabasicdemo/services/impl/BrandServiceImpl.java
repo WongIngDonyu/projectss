@@ -64,4 +64,9 @@ public class BrandServiceImpl implements BrandService<UUID> {
             return modelMapper.map(brandRepository.save(brand1), BrandDto.class);
         }
     }
+
+    @Override
+    public Brand findBrandByName(String brandName) {
+        return brandRepository.findByName(brandName).orElse(null);
+    }
 }
