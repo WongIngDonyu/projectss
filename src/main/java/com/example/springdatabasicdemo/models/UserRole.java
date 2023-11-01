@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "roles")
-public class UserRole extends BaseEntity{
+public class UserRole extends BasedEnity{
     private Role role;
     private List<User> users;
     public UserRole(){}

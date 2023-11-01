@@ -3,19 +3,22 @@ package com.example.springdatabasicdemo.web;
 import com.example.springdatabasicdemo.services.ModelService;
 import com.example.springdatabasicdemo.services.dtos.BrandDto;
 import com.example.springdatabasicdemo.services.dtos.ModelDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
 @RequestMapping("/model")
 public class ModelController {
     private final ModelService modelService;
-
-    public ModelController(ModelService modelService) {
+    private final ModelMapper modelMapper;
+    public ModelController(ModelService modelService, ModelMapper modelMapper) {
         this.modelService = modelService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/all")
@@ -33,7 +36,7 @@ public class ModelController {
     @DeleteMapping("/delete/{id}")
     public String deleteModel(@PathVariable("id") UUID uuid){
         modelService.delete(uuid);
-        return "redirect:/all";
+        return "redirect:/model/all";
     }
 
     @GetMapping("/create")
@@ -44,6 +47,27 @@ public class ModelController {
     @PostMapping("/create")
     public String addNewModel(@RequestBody ModelDto modelDto){
         modelService.add(modelDto);
-        return "redirect:/all";
+        return "redirect:/model/all";
+    }
+    @GetMapping("/change/{id}")
+    public String changeModel(Model model, @PathVariable("id") UUID uuid){
+        Optional<Model> dbModel = modelService.findModel(uuid);
+        if (dbModel.isPresent()) {
+            ModelDto modelDto = modelMapper.map(dbModel.get(), ModelDto.class);
+            model.addAttribute("model", modelDto);
+            return "editModel";
+        } else {
+            return "modelNotFound";
+        }
+    }
+    @PostMapping("/change/{id}")
+    public String saveChangeModel(@PathVariable("id") UUID uuid, @RequestBody ModelDto modelDto) {
+        Optional<Model> dbModel = modelService.findModel(uuid);
+        if (dbModel.isPresent()) {
+            modelService.update(modelDto);
+            return "redirect:/model/all";
+        } else {
+            return "modelNotFound";
+        }
     }
 }

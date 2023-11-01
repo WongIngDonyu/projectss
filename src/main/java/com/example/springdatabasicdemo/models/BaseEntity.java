@@ -6,20 +6,9 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @MappedSuperclass
-public abstract class BaseEntity {
-    protected UUID id;
+public abstract class BaseEntity extends BasedEnity{
     protected LocalDateTime created;
     protected LocalDateTime modified;
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", nullable = true)
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
     @Column(name = "created")
     public LocalDateTime getCreated() {
         return created;
